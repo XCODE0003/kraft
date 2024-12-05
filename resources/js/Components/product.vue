@@ -11,7 +11,7 @@ const props = defineProps({
 
 <template>
 
-    <Link :href="route('product', props.product.id)" class="product-item">
+    <Link :href="`/product/${props.product.id}`" class="product-item">
     <div class="flex items-center gap-6 ">
         <img :src="'/storage/' + props.product?.images?.split(',')[0]" class="w-20 h-20 ">
         <div class="flex flex-col gap-4 max-w-[300px]">
