@@ -32,7 +32,7 @@ const props = defineProps({
                                 <div v-for="nodeGroup in category.nodes" class=" catalog-item-element-title">
                                     <p class="py-1">{{ nodeGroup.node.name }}</p>
                                     <div class="flex flex-col gap-3 pl-2">
-                                        <Link :href="route('category', [category.id, subcategory.id])"
+                                        <Link :href="`/category/${category.id}/${subcategory.id}`"
                                             v-for="subcategory in nodeGroup.subcategories" class="catalog-item-element">
                                         <span>{{ subcategory.name }}</span>
                                         <span>{{ subcategory.products_count }} шт.</span>
@@ -40,7 +40,7 @@ const props = defineProps({
                                     </div>
                                 </div>
                             </template>
-                            <Link :href="route('category', [category.id, subcategory.id])"
+                            <Link :href="`/category/${category.id}/${subcategory.id}`"
                                 v-for="subcategory in category.simple_subcategories" class="catalog-item-element">
                             <span>{{ subcategory.name }}</span>
                             <span>{{ subcategory.products_count }} шт.</span>
