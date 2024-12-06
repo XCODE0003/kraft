@@ -1,11 +1,12 @@
 <script setup>
 import Layout from '@/Layouts/Layout.vue';
-
+import { Link } from '@inertiajs/vue3';
 import Product from '@/Components/product.vue';
 const props = defineProps({
     category: Object,
     subcategories: Array,
     products: Array,
+    is_nodes: Boolean
 });
 
 </script>
@@ -28,13 +29,14 @@ const props = defineProps({
                 <h1 class=" text-[56px] leading-none font-bold">{{ props.category.name }}</h1>
             </section>
             <section class="container mx-auto grid grid-cols-4 gap-4">
-                <div v-for="subcategory in props.subcategories" class="products-card">
-                    <img :src="'/storage/' + subcategory.image" class="w-10 h-10 rounded-lg" alt="" srcset="">
-                    <div class="flex flex-col gap-2">
-                        <p>{{ subcategory.name }}</p>
-                        <span class="text-sm">{{ props.products.length }} товаров</span>
-                    </div>
+                <Link :href="`${props.is_nodes ? '/node/' + subcategory.id : '/category/' + subcategory.id}`"
+                    v-for="subcategory in props.subcategories" class="products-card">
+                <img :src="'/storage/' + subcategory.image" class="w-10 h-10 rounded-lg" alt="" srcset="">
+                <div class="flex flex-col gap-2">
+                    <p>{{ subcategory.name }}</p>
+                    <span class="text-sm">{{ props.products.length }} товаров</span>
                 </div>
+                </Link>
 
             </section>
 

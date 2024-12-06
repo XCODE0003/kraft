@@ -12,21 +12,21 @@ export const useSearchStore = defineStore('search', () => {
     })
 
 
-
+    async function search() {
+        const { data } = await axios.get('/search/' + options.value.input)
+        options.value.items = data
+    }
     async function init() {
         watch(
             () => options.value.input,
-            (newQuery) => {
+            async (newQuery) => {
                 if (newQuery) {
-
-
                     clearTimeout(options.value.timeout)
-                    options.value.timeout = setTimeout(() => {
+                    options.value.timeout = setTimeout(async () => {
                         options.value.loading = true
-                        setTimeout(() => {
-                            options.value.loading = false
-                        }, 1000)
-                    }, 300)
+                        await search()
+                        options.value.loading = false
+                    }, 1000)
                 }
             }
         )

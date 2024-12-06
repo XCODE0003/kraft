@@ -8,9 +8,11 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy';
 import { createVfm } from 'vue-final-modal'
 import { createPinia } from 'pinia'
 import 'vue-final-modal/style.css'
+import { useProductStore } from './Stores/ProductStore';
 
 
 const vfm = createVfm()
+
 const pinia = createPinia()
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';

@@ -56,6 +56,8 @@ class ProductResource extends Resource
 
                 Forms\Components\FileUpload::make('images')
                     ->required()
+                    ->reorderable()
+                    ->multiple()
                     ->label('Изображения'),
 
 

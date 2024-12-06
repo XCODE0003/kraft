@@ -26,7 +26,8 @@ const props = defineProps({
                 <div v-for="category in props.categories" class="catalog-item">
                     <img :src="`/storage/${category.image}`" :alt="category.name">
                     <div class="catalog-item-info">
-                        <span class="catalog-item-title">{{ category.name }}</span>
+                        <Link :href="`/category/${category.id}`"
+                            class="catalog-item-title transition-all hover:text-purple">{{ category.name }}</Link>
                         <div class="catalog-items-container">
                             <template v-if="category.nodes">
                                 <div v-for="nodeGroup in category.nodes" class=" catalog-item-element-title">

@@ -2,9 +2,12 @@
 import { Link } from '@inertiajs/vue3';
 import { useContactModalStore } from '@/Stores/Modals/ContactStore';
 import { useSearchStore } from '@/Stores/SearchStore';
+import { useProductStore } from '@/Stores/ProductStore';
 
 const searchStore = useSearchStore();
+const productStore = useProductStore()
 searchStore.init()
+productStore.init()
 function handleFocus() {
     searchStore.options.show = !searchStore.options.show
 }
@@ -52,14 +55,35 @@ function handleFocus() {
 
                                 </div>
                                 <div class="flex flex-col gap-3">
-                                    <p class="text-black font-bold leading-none">Популярные товары</p>
+                                    <p class="text-black font-bold leading-none">{{
+                                        searchStore.options?.input?.length > 0 ?
+                                            searchStore.options.items.length > 0 ?
+                                                'Товары по вашему запросу' :
+                                                'Товары не найдены' :
+                                            'Популярные товары'
+                                    }}</p>
                                     <div class="flex items-center gap-3 overflow-x-auto">
-                                        <div class="product-card gap-3 max-w-[230px]">
-                                            <img class="w-full h-[175px]" src="/assets/img/product-1.png" alt="">
+                                        <div v-if="searchStore.options?.input?.length > 0"
+                                            v-for="item in searchStore.options.items"
+                                            class="product-card gap-3 max-w-[230px]">
+                                            <img class="w-full h-[175px]" :src="'/storage/' + item?.images" alt="">
                                             <div class="flex flex-col gap-4">
                                                 <div class="product-text">
-                                                    <p class="font-medium">Канат стальной круглый круглопрядный двойной
-                                                        крестовой</p>
+                                                    <p class="font-medium">{{ item?.name }}</p>
+                                                </div>
+                                                <button @click="useContactModalStore().openModal()"
+                                                    class="btn btn-primary w-fit">
+                                                    Заказать звонок
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div v-else v-for="popularProduct in productStore.options.popularProducts"
+                                            class="product-card gap-3 max-w-[230px]">
+                                            <img class="w-full h-[175px]" :src="'/storage/' + popularProduct?.images"
+                                                alt="">
+                                            <div class="flex flex-col gap-4">
+                                                <div class="product-text">
+                                                    <p class="font-medium">{{ popularProduct?.name }}</p>
                                                 </div>
                                                 <button @click="useContactModalStore().openModal()"
                                                     class="btn btn-primary w-fit">

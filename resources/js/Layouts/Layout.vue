@@ -3,6 +3,10 @@ import Header from '@/Components/Header.vue';
 import Footer from '@/Components/Footer.vue';
 import ContactModal from '@/Components/Modals/ContactModal.vue';
 import { ModalsContainer } from 'vue-final-modal';
+import { useProductStore } from '@/Stores/ProductStore';
+
+const productStore = useProductStore()
+productStore.init()
 </script>
 
 <template>
@@ -20,6 +24,7 @@ import { ModalsContainer } from 'vue-final-modal';
 .fade-leave-active {
     transition: opacity 0.3s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
     opacity: 0;

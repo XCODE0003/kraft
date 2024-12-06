@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Category;
+use App\Models\Specifications;
 use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Node;
@@ -62,16 +63,38 @@ Route::get('/product/{product}', function ($product) {
     $product = Product::where('id', $product)->first();
     $subcategory = SubCategory::where('id', $product->subcategory_id)->first();
     $category = Category::where('id', $subcategory->category_id)->first();
+    foreach ($product->specifications as $key => $spec) {
+        $specification = Specifications::where('key', $spec['key'])->first();
+        $specifications = $product->specifications;
+        $specifications[$key]['name'] = $specification->name;
+        $product->specifications = $specifications;
+    }
     return Inertia::render('product', compact('product', 'category', 'subcategory'));
 })->name('product');
 
 Route::get('/category/{category}', function ($category) {
+    $is_nodes = false;
     $category = Category::where('id', $category)->first();
     $subcategories = SubCategory::where('category_id', $category->id)->get();
+    $nodes = Node::whereIn('id', $subcategories->pluck('node_id'))->get();
+    if ($nodes->count() > 0) {
+        $subcategories = $nodes;
+        $is_nodes = true;
+    }
     $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))->get();
-    return Inertia::render('category', compact('category', 'subcategories', 'products'));
+
+
+    return Inertia::render('category', compact('category', 'subcategories', 'products', 'is_nodes'));
 })->name('category');
 
+Route::get('/node/{node}', function ($node) {
+    $is_nodes = false;
+    $node = Node::where('id', $node)->first();
+    $subcategories = SubCategory::where('node_id', $node->id)->get();
+    $category = $node;
+    $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))->get();
+    return Inertia::render('category', compact('node', 'category', 'subcategories', 'products', 'is_nodes'));
+})->name('node');
 Route::get('/category/{category}/{subcategory}', function ($category, $subcategory) {
     $category = Category::where('id', $category)->first();
     $subcategory = SubCategory::where('id', $subcategory)->first();
@@ -83,10 +106,11 @@ Route::get('/category/{category}/{subcategory}', function ($category, $subcatego
     foreach ($products as $product) {
         foreach ($product->specifications as $spec) {
             $key = $spec['key'];
+            $specification = Specifications::where('key', $key)->first();
             if (!isset($groupedFilters[$key])) {
                 $groupedFilters[$key] = [
                     'key' => $key,
-                    'name' => $spec['name'],
+                    'name' => $specification->name,
                     'values' => []
                 ];
             }
@@ -103,3 +127,15 @@ Route::get('/category/{category}/{subcategory}', function ($category, $subcatego
 Route::get('/products', function () {
     return Inertia::render('products');
 })->name('products');
+
+
+Route::get('/search/{search}', function ($search) {
+    $products = Product::where('name', 'like', '%' . $search . '%')->get();
+    return response()->json($products);
+})->name('search');
+
+
+Route::get('/popular-products', function () {
+    $popularProducts = Product::query()->limit(10)->get()->toArray();
+    return response()->json($popularProducts);
+});

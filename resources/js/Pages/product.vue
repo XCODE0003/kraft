@@ -37,7 +37,7 @@ const props = defineProps({
                 </div>
             </section>
             <section class="flex container mx-auto justify-between flex-wrap">
-                <img class="lg:w-[616px] w-full" :src="'/storage/' + props.product?.images?.split(',')[0]" alt="">
+                <img class="lg:w-[616px] w-full" :src="'/storage/' + props.product?.images[0]" alt="">
                 <div class="flex flex-col py-6 gap-8 justify-between w-full lg:w-[552px]">
                     <div class="flex flex-col">
                         <div class="flex flex-col gap-4">
