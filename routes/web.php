@@ -71,6 +71,7 @@ Route::get('/category/{category}', function ($category) {
     $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))->get();
     return Inertia::render('category', compact('category', 'subcategories', 'products'));
 })->name('category');
+
 Route::get('/category/{category}/{subcategory}', function ($category, $subcategory) {
     $category = Category::where('id', $category)->first();
     $subcategory = SubCategory::where('id', $subcategory)->first();

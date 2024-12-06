@@ -16,10 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->json('images');
-            $table->foreignId('subcategory_id')
-                ->constrained('subcategories')
-                ->onDelete('cascade');
-            $table->integer('quantity');
+            $table->integer('subcategory_id');
             $table->boolean('is_closeout')->default(false);
             $table->boolean('is_pickup')->default(false);
             $table->boolean('is_pickup_point')->default(false);

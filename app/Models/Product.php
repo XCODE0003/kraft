@@ -23,6 +23,7 @@ class Product extends Model
         'specifications',
     ];
 
+
     protected $casts = [
         'images' => 'array',
         'specifications' => 'array',

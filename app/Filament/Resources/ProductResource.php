@@ -5,6 +5,8 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
+use App\Models\Specifications;
+
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,7 +15,8 @@ use Filament\Forms\Components\Section;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
-
+use App\Models\Subcategory;
+use App\Service\Filament\FormatProductOption;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Repeater;
 use Illuminate\Database\Eloquent\Builder;
@@ -43,14 +46,14 @@ class ProductResource extends Resource
                             ->maxLength(255),
                         Forms\Components\Select::make('subcategory_id')
                             ->relationship('subcategory', 'name')
+                            ->searchable()
+                            ->options(fn() => (new FormatProductOption())->format())
                             ->required()
                             ->label('Подкатегория'),
                         Forms\Components\Textarea::make('description')
                             ->required()
                             ->label('Описание'),
-                        Forms\Components\TextInput::make('quantity')
-                            ->required()
-                            ->label('Количество'),
+
                     ])->columns(2),
 
                 Forms\Components\FileUpload::make('images')
@@ -62,16 +65,12 @@ class ProductResource extends Resource
                 Section::make('Дополнительные характеристики')
                     ->schema([
                         Forms\Components\Toggle::make('is_closeout')
-                            ->required()
                             ->label('Распродажа'),
                         Forms\Components\Toggle::make('is_pickup')
-                            ->required()
                             ->label('Самовывоз'),
                         Forms\Components\Toggle::make('is_pickup_courier')
-                            ->required()
                             ->label('Курьер'),
                         Forms\Components\Toggle::make('is_pickup_point')
-                            ->required()
                             ->label('Из пункта выдачи'),
                     ])->columns(2),
                 Section::make('Характеристики')
@@ -79,12 +78,11 @@ class ProductResource extends Resource
                         Repeater::make('specifications')
                             ->label('')
                             ->schema([
-                                TextInput::make('name')
+                                Select::make('key')
+                                    ->options(Specifications::all()->pluck('name', 'key'))
                                     ->required()
+                                    ->searchable()
                                     ->label('Характеристика'),
-                                TextInput::make('key')
-                                    ->required()
-                                    ->label('Ключ. Ключ для характеристики например - ГОСТ(gost), Класс арматуры(class), Марка стали(steel_grade), и т.д.'),
                                 TextInput::make('value')
                                     ->required()
                                     ->label('Значение'),
@@ -106,7 +104,7 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('quantity')
                     ->label('Количество'),
                 Tables\Columns\ToggleColumn::make('is_closeout')
-                    ->label('Распродажа'),
+                    ->label('Распроажа'),
                 Tables\Columns\ToggleColumn::make('is_pickup')
                     ->label('Самовывоз'),
                 Tables\Columns\ToggleColumn::make('is_pickup_courier')
