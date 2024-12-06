@@ -15,7 +15,6 @@ use Filament\Forms\Components\Section;
 use Filament\Tables\Table;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
-use App\Models\Subcategory;
 use App\Service\Filament\FormatProductOption;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Repeater;

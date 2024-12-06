@@ -2,14 +2,14 @@
 
 namespace App\Service\Filament;
 
-use App\Models\Subcategory;
+use App\Models\SubCategory;
 use App\Models\Category;
 
 class FormatProductOption
 {
     public static function format()
     {
-        return Subcategory::with('category')
+        return SubCategory::with('category')
             ->get()
             ->mapWithKeys(function ($subcategory) {
                 return [
