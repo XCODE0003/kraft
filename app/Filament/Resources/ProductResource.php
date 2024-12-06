@@ -50,7 +50,6 @@ class ProductResource extends Resource
                             ->required()
                             ->label('Подкатегория'),
                         Forms\Components\Textarea::make('description')
-                            ->required()
                             ->label('Описание'),
 
                     ])->columns(2),
