@@ -29,7 +29,8 @@ const props = defineProps({
                 <h1 class=" text-[56px] leading-none font-bold">{{ props.category.name }}</h1>
             </section>
             <section class="container mx-auto grid grid-cols-4 gap-4">
-                <Link :href="`${props.is_nodes ? '/node/' + subcategory.id : '/category/' + subcategory.id}`"
+                <Link
+                    :href="`${props.is_nodes ? '/node/' + subcategory.id : '/category/' + props.category.id + '/' + subcategory.id}`"
                     v-for="subcategory in props.subcategories" class="products-card">
                 <img :src="'/storage/' + subcategory.image" class="w-10 h-10 rounded-lg" alt="" srcset="">
                 <div class="flex flex-col gap-2">

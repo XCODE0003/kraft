@@ -79,11 +79,12 @@ Route::get('/product/{product}', function ($product) {
     return Inertia::render('product', compact('product', 'category', 'subcategory'));
 })->name('product');
 
-Route::get('/category/{category}', function ($category) {
+Route::get('/category/{category}', function ($category = null) {
     $is_nodes = false;
     $category = Category::where('id', $category)->first();
     $subcategories = SubCategory::where('category_id', $category->id)->get();
     $nodes = Node::whereIn('id', $subcategories->pluck('node_id'))->get();
+
     if ($nodes->count() > 0) {
         $subcategories = $nodes;
         $is_nodes = true;
