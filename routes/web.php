@@ -7,6 +7,7 @@ use Inertia\Inertia;
 use App\Models\Category;
 use App\Models\Specifications;
 use App\Models\SubCategory;
+use App\Models\Settings;
 use App\Models\Product;
 use App\Models\Node;
 /*
@@ -58,6 +59,12 @@ Route::get('/catalog', function () {
     }
     return Inertia::render('catalog', compact('categories'));
 })->name('catalog');
+
+
+Route::get('/settings', function () {
+    $settings = Settings::first();
+    return response()->json($settings);
+})->name('settings');
 
 Route::get('/product/{product}', function ($product) {
     $product = Product::where('id', $product)->first();

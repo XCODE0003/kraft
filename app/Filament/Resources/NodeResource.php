@@ -41,7 +41,6 @@ class NodeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Название'),
-
             ])
             ->filters([
                 //

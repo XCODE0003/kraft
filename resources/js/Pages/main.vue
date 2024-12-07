@@ -2,11 +2,14 @@
 import Layout from '@/Layouts/Layout.vue';
 import { Link } from '@inertiajs/vue3';
 import { useContactModalStore } from '@/Stores/Modals/ContactStore';
+import { useSettingStore } from '@/Stores/SettingStore';
 
 const props = defineProps({
     products: Object,
     categories: Object
 })
+
+const settingStore = useSettingStore()
 </script>
 
 <template>
@@ -342,41 +345,39 @@ const props = defineProps({
                 <div class="info-company-container">
                     <div class="item">
                         <p>Название организации</p>
-                        <span>Общество с ограниченной ответственностью «КрафтСнаб»</span>
+                        <span>{{ settingStore.options.settings?.name_company }}</span>
                     </div>
                     <div class="line"></div>
                     <div class="item">
                         <p>Юридический/Фактический адрес</p>
-                        <span>350075, КРАСНОДАРСКИЙ КРАЙ, Г.О. ГОРОД КРАСНОДАР, УЛ. ИМ. СТАСОВА, Д. 182/1, ЭТАЖ 3,
-                            ПОМЕЩ. 3</span>
+                        <span>{{ settingStore.options.settings?.fakt_address }}</span>
                     </div>
                     <div class="line"></div>
                     <div class="item">
                         <p>Почтовый адрес</p>
-                        <span>350075, КРАСНОДАРСКИЙ КРАЙ, Г.О. ГОРОД КРАСНОДАР, УЛ. ИМ. СТАСОВА, Д. 182/1, ЭТАЖ 3, офис
-                            301</span>
+                        <span>{{ settingStore.options.settings?.mail_address }}</span>
                     </div>
                     <div class="line"></div>
                     <div class="item">
                         <div class="flex items-center gap-10    ">
                             <div class="company-item">
                                 <p>ИНН</p>
-                                <span>2312324484</span>
+                                <span>{{ settingStore.options.settings?.inn }}</span>
                             </div>
                             <div class="company-item">
                                 <p>КПП</p>
-                                <span>231201001</span>
+                                <span>{{ settingStore.options.settings?.kpp }}</span>
                             </div>
                             <div class="company-item">
                                 <p>ОГРН</p>
-                                <span>1242300003967</span>
+                                <span>{{ settingStore.options.settings?.ogrn }}</span>
                             </div>
                         </div>
                     </div>
                     <div class="line"></div>
                     <div class="item">
                         <p>Постановка в налоговый учет</p>
-                        <span>29.01.2024 инспекция федеральной налоговой службы №5 по г. Краснодару. ОКВЭД: 46.72</span>
+                        <span>{{ settingStore.options.settings?.tax_system }}</span>
                     </div>
                 </div>
 

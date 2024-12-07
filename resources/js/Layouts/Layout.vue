@@ -4,9 +4,13 @@ import Footer from '@/Components/Footer.vue';
 import ContactModal from '@/Components/Modals/ContactModal.vue';
 import { ModalsContainer } from 'vue-final-modal';
 import { useProductStore } from '@/Stores/ProductStore';
+import { useSettingStore } from '@/Stores/SettingStore';
 
 const productStore = useProductStore()
 productStore.init()
+
+const settingStore = useSettingStore()
+settingStore.init()
 </script>
 
 <template>

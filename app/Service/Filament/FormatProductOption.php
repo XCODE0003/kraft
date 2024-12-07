@@ -9,11 +9,12 @@ class FormatProductOption
 {
     public static function format()
     {
-        return SubCategory::with('category')
+        return SubCategory::with('node')
             ->get()
             ->mapWithKeys(function ($subcategory) {
                 return [
-                    $subcategory->id => $subcategory->name . ' - ' . $subcategory->category->name
+
+                    $subcategory->id => $subcategory->name . ' - ' . $subcategory->node?->name
                 ];
             });
     }
