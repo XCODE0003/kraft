@@ -44,7 +44,6 @@ class ProductResource extends Resource
                             ->label('Название')
                             ->maxLength(255),
                         Forms\Components\Select::make('subcategory_id')
-                            ->relationship('subcategory', 'name')
                             ->searchable()
                             ->options(fn() => (new FormatProductOption())->format())
                             ->required()

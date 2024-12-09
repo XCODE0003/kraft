@@ -21,6 +21,7 @@ class Product extends Model
         'is_pickup_courier',
         'is_active',
         'specifications',
+        'views',
     ];
 
 

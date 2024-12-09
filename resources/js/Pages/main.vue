@@ -171,126 +171,23 @@ const settingStore = useSettingStore()
 
                 </div>
                 <div class="grid grid-cols-4 gap-4">
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
+                    <Link :href="`/product/${product.id}`" v-for="product in products" class="product-card">
+                    <p v-if="product.specifications.find(item => item.key === 'gost')?.value" class="gost">ГОСТ {{
+                        product.specifications.find(item => item.key === 'gost')?.value }}</p>
+                    <div class="image-wrapper">
+                        <img :src="'/storage/' + product.images[0]" alt="">
                     </div>
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
+                    <div class="flex flex-col gap-4">
+                        <div class="product-text">
+                            <!-- <p>В ЛК-Р, 12 мм</p> -->
+                            <p>{{ product.name }}</p>
                         </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
+                        <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
+                            Заказать звонок
+                        </button>
                     </div>
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
-                    </div>
-                    <div class="product-card">
-                        <p class="gost">ГОСТ 2688-80</p>
-                        <div class="image-wrapper">
-                            <img src="/assets/img/product-1.png" alt="">
-                        </div>
-                        <div class="flex flex-col gap-4">
-                            <div class="product-text">
-                                <p>В ЛК-Р, 12 мм</p>
-                                <p>Канат стальной круглый круглопрядный двойной крестовой</p>
-                            </div>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
-                                Заказать звонок
-                            </button>
-                        </div>
-                    </div>
+                    </Link>
+
                 </div>
             </section>
             <section class="container mx-auto flex flex-col gap-12">

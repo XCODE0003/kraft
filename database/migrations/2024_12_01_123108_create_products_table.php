@@ -22,6 +22,7 @@ return new class extends Migration
             $table->boolean('is_pickup_point')->default(false);
             $table->boolean('is_pickup_courier')->default(false);
             $table->boolean('is_active')->default(true);
+            $table->integer('views')->default(0);
             $table->json('specifications')->nullable();
             $table->timestamps();
         });

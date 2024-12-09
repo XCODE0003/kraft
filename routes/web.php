@@ -22,7 +22,11 @@ use App\Models\Node;
 */
 
 Route::get('/', function () {
-    $products = Product::all()->take(8);
+    $products = Product::all()
+        ->take(8)
+        ->sortByDesc('views')
+        ->values();
+
     $categories = Category::all();
     $subcategories = SubCategory::whereIn('category_id', $categories->pluck('id'))->get();
     foreach ($categories as $category) {
@@ -68,6 +72,11 @@ Route::get('/settings', function () {
 
 Route::get('/product/{product}', function ($product) {
     $product = Product::where('id', $product)->first();
+    if (!session()->has('product_' . $product->id)) {
+        $product->views = $product->views + 1;
+        $product->save();
+        session()->put('product_' . $product->id, true);
+    }
     $subcategory = SubCategory::where('id', $product->subcategory_id)->first();
     $category = Category::where('id', $subcategory->category_id)->first();
     foreach ($product->specifications as $key => $spec) {
@@ -105,6 +114,7 @@ Route::get('/node/{node}', function ($node) {
 })->name('node');
 Route::get('/category/{category}/{subcategory}', function ($category, $subcategory) {
     $category = Category::where('id', $category)->first();
+
     $subcategory = SubCategory::where('id', $subcategory)->first();
     $products = Product::where('subcategory_id', $subcategory->id)->get();
 
