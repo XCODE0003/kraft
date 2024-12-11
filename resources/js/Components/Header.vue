@@ -153,7 +153,7 @@ function handleFocus() {
                         <a href="#">Доставка</a>
                         <a href="#">Оплата</a>
                         <a href="#">Калькулятор</a>
-                        <a href="#">Контакты</a>
+                        <Link href="/contacts">Контакты</Link>
                     </div>
                 </div>
                 <button @click="useContactModalStore().openModal()" class="btn btn-primary">
