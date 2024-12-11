@@ -6,7 +6,7 @@ const settingStore = useSettingStore()
 
 <template>
     <footer class="container mt-12 mx-auto flex justify-between items-center py-6">
-        <div class="flex flex-col gap-6">
+        <div class="flex max-md:hidden flex-col gap-6">
             <div class="flex flex-col gap-0.5 flex-shrink-0">
                 <div class="flex items-center gap-1">
                     <img src="/assets/img/logo.svg" alt="logo" width="24" height="24" srcset="">
@@ -42,7 +42,7 @@ const settingStore = useSettingStore()
                 </div>
             </div>
         </div>
-        <div class="flex flex-col gap-6">
+        <div class="flex max-md:hidden flex-col gap-6">
             <div class="nav-menu">
                 <a href="#">О компании</a>
                 <a href="#">Услуги</a>

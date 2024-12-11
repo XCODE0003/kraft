@@ -28,14 +28,14 @@ const props = defineProps({
                 </div>
                 <h1 class=" text-[56px] leading-none font-bold">{{ props.category.name }}</h1>
             </section>
-            <section class="container mx-auto grid grid-cols-4 gap-4">
+            <section class="container mx-auto  grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 <Link
                     :href="`${props.is_nodes ? '/node/' + subcategory.id : '/category/' + props.category.id + '/' + subcategory.id}`"
                     v-for="subcategory in props.subcategories" class="products-card">
                 <img :src="'/storage/' + subcategory.image" class="w-10 h-10 rounded-lg" alt="" srcset="">
                 <div class="flex flex-col gap-2">
                     <p>{{ subcategory.name }}</p>
-                    <span class="text-sm">{{ props.products.length }} товаров</span>
+                    <span class="text-sm">{{ subcategory.products_count }} товаров</span>
                 </div>
                 </Link>
 

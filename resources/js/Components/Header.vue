@@ -30,7 +30,7 @@ function handleFocus() {
                         </Link>
                         <span class="text-gray_icon leading-none text-sm">г. Краснодар</span>
                     </div>
-                    <div class="flex flex-col gap-2 flex-1 relative">
+                    <div class="flex  max-sm:hidden flex-col gap-2 flex-1 relative">
                         <div class="input-wrapper w-full flex-1">
                             <svg v-if="!searchStore.options.loading" xmlns="http://www.w3.org/2000/svg" width="14"
                                 height="14" viewBox="0 0 14 14" fill="none">
@@ -103,7 +103,7 @@ function handleFocus() {
 
                     </div>
                 </div>
-                <div class="flex-1 contact-container">
+                <div class="flex-1 max-md:hidden contact-container">
                     <div class="contact-element">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
                             <path
@@ -120,7 +120,7 @@ function handleFocus() {
                         </svg>
                         {{ settingStore.options.settings?.phone }}
                     </div>
-                    <div class="contact-element">
+                    <div class="contact-element max-lg:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
                             <path
                                 d="M1.33333 5.1665L6.77661 8.9768C7.21739 9.28535 7.43778 9.43962 7.6775 9.49938C7.88926 9.55216 8.11073 9.55216 8.32249 9.49938C8.56221 9.43962 8.7826 9.28535 9.22338 8.9768L14.6667 5.1665M4.53333 13.8332H11.4667C12.5868 13.8332 13.1468 13.8332 13.5746 13.6152C13.951 13.4234 14.2569 13.1175 14.4487 12.7412C14.6667 12.3133 14.6667 11.7533 14.6667 10.6332V6.3665C14.6667 5.2464 14.6667 4.68635 14.4487 4.25852C14.2569 3.8822 13.951 3.57624 13.5746 3.38449C13.1468 3.1665 12.5868 3.1665 11.4667 3.1665H4.53333C3.41322 3.1665 2.85317 3.1665 2.42535 3.38449C2.04902 3.57624 1.74306 3.8822 1.55132 4.25852C1.33333 4.68635 1.33333 5.2464 1.33333 6.3665V10.6332C1.33333 11.7533 1.33333 12.3133 1.55132 12.7412C1.74306 13.1175 2.04902 13.4234 2.42535 13.6152C2.85317 13.8332 3.41322 13.8332 4.53333 13.8332Z"
@@ -128,6 +128,14 @@ function handleFocus() {
                         </svg>
                         {{ settingStore.options.settings?.email }}
                     </div>
+                </div>
+                <div class="btn mx-3 p-4 max-md:flex hidden  btn-white h-full">
+
+                    <svg width="14" height="10" viewBox="0 0 14 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M1 5H13M1 1H13M1 9H9" stroke="#4B4951" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+
                 </div>
             </div>
             <div class="subheader-container">
@@ -139,7 +147,7 @@ function handleFocus() {
                         </svg>
                         <span>Каталог</span>
                     </button>
-                    <div class="nav-menu">
+                    <div class="max-md:hidden nav-menu">
                         <a href="#">О компании</a>
                         <a href="#">Услуги</a>
                         <a href="#">Доставка</a>

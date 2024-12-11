@@ -17,4 +17,9 @@ class Node extends Model
     {
         return $this->hasMany(SubCategory::class);
     }
+
+    public function products()
+    {
+        return $this->hasManyThrough(Product::class, SubCategory::class, 'node_id', 'subcategory_id', 'id');
+    }
 }

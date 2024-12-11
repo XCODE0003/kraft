@@ -22,7 +22,7 @@ const props = defineProps({
                 </div>
                 <h1 class=" text-[56px] leading-none font-bold">Каталог</h1>
             </section>
-            <section class="grid grid-cols-4 gap-11 container mx-auto">
+            <section class="grid  md:grid-cols-3 lg:grid-cols-4 gap-11 container mx-auto">
                 <div v-for="category in props.categories" class="catalog-item">
                     <img :src="`/storage/${category.image}`" :alt="category.name">
                     <div class="catalog-item-info">

@@ -27,30 +27,36 @@ const settingStore = useSettingStore()
                                 металлопроката,
                                 соответствующего все требованиям ГОСТ, применяемого в строительных, промышленных и
                                 производственных целях.</p>
-                            <button @click="useContactModalStore().openModal()" class="btn btn-primary  p-6 w-fit">
+                            <button @click="useContactModalStore().openModal()"
+                                class="btn btn-primary  p-6  md:w-fit  flex justify-center">
                                 Заказать звонок
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div class="absolute bottom-0 right-0 -z-10 w-[50%]">
+                <div class="max-md:hidden absolute bottom-0 right-0 -z-10 w-[50%]">
                     <img src="/assets/img/metall.png" class="object-contain h-[700px]" alt="metall" srcset="">
                 </div>
 
             </section>
             <section class="flex  overflow-x-hidden flex-col gap-12 ">
-                <div class="container  mx-auto flex justify-between items-center">
-                    <div class="flex title items-center gap-4">
+                <div class="container max-md:flex-col   mx-auto flex justify-between md:items-center">
+                    <div class="flex max-md:flex-col max-md:gap-2 title md:items-center gap-4">
                         <p class="title leading-none font-bold ">Наш каталог</p>
-                        <p class="title leading-none text-black/35 font-bold ">{{ categories.length }} категорий</p>
+                        <p class="title max-md:text-xl leading-none text-black/35 font-bold ">{{ categories.length }}
+                            категорий</p>
                     </div>
-                    <Link href="/catalog" class="flex items-center text-gray_icon gap-1">
+                    <Link href="/catalog" class="flex max-md:hidden  items-center text-gray_icon gap-1">
                     Смотреть все категории
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11" fill="none">
                         <path d="M1.66683 5.5H12.3335M12.3335 5.5L8.3335 1.5M12.3335 5.5L8.3335 9.5" stroke="#4B4951"
                             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
+                    </Link>
+                    <Link href="/catalog" class="max-md:flex hidden btn btn-secondary leading-none mt-3 max-md:w-fit ">
+                    Смотреть все категории
+
                     </Link>
                 </div>
                 <div class="container mx-auto relative">
@@ -82,7 +88,7 @@ const settingStore = useSettingStore()
             </section>
             <section class="flex container  items-center justify-center mx-auto flex-col gap-12">
                 <h2 class="title-big text-center">Уникальные<br>преимущества</h2>
-                <div class="grid grid-cols-2 gap-3 w-full">
+                <div class="grid md:grid-cols-2 gap-3 w-full">
                     <div class="advantages-card advantages-bg-1">
                         <div class="advantages-item">
                             <div>
@@ -170,8 +176,8 @@ const settingStore = useSettingStore()
                     </Link>
 
                 </div>
-                <div class="grid grid-cols-4 gap-4">
-                    <Link :href="`/product/${product.id}`" v-for="product in products" class="product-card">
+                <div class="flex overflow-x-auto  md:grid grid-cols-4 gap-4">
+                    <Link :href="`/product/${product.id}`" v-for="product in products" class="product-card shrink-0">
                     <p v-if="product.specifications.find(item => item.key === 'gost')?.value" class="gost">ГОСТ {{
                         product.specifications.find(item => item.key === 'gost')?.value }}</p>
                     <div class="image-wrapper">
@@ -202,7 +208,7 @@ const settingStore = useSettingStore()
                 </div>
             </section>
 
-            <section class="container mx-auto flex items-start gap-28">
+            <section class="container mx-auto max-md:flex-col flex items-start gap-28">
                 <div class="flex max-w-[500px] flex-col gap-10">
                     <div class="flex flex-col gap-6">
                         <h2 class="title">Нужна консультация по выбору металлопроката?</h2>
