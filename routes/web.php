@@ -126,9 +126,9 @@ Route::get('/node/{node}', function ($node) {
 })->name('node');
 Route::get('/category/{category}/{subcategory}', function ($category, $subcategory) {
     $category = Category::where('id', $category)->first();
-
     $subcategory = SubCategory::where('id', $subcategory)->first();
-    $products = Product::where('subcategory_id', $subcategory->id)->get();
+    
+    $products = Product::where('subcategory_id', $subcategory->id)->paginate(10);
 
     $filters = [];
     $groupedFilters = [];
@@ -156,10 +156,11 @@ Route::get('/category/{category}/{subcategory}', function ($category, $subcatego
 Route::get('/category/{category}/{subcategory}/filters', function ($category, $subcategory, Request $request) {
     $category = Category::where('id', $category)->first();
     $subcategory = SubCategory::where('id', $subcategory)->first();
-    $products = Product::where('subcategory_id', $subcategory->id)->get();
-
-    $filteredProducts = $products->filter(function ($product) use ($request) {
-        foreach ($request->all() as $key => $value) {
+    
+    $query = Product::where('subcategory_id', $subcategory->id);
+    
+    $filteredProducts = $query->get()->filter(function ($product) use ($request) {
+        foreach ($request->except('page') as $key => $value) {
             $specExists = collect($product->specifications)->contains(function ($spec) use ($key, $value) {
                 return $spec['key'] === $key && $spec['value'] === $value;
             });
@@ -170,7 +171,15 @@ Route::get('/category/{category}/{subcategory}/filters', function ($category, $s
         return true;
     });
 
-    return response()->json($filteredProducts->values());
+    $page = (int)($request->page ?? 1);
+    $perPage = 10;
+
+    return response()->json([
+        'data' => $filteredProducts->forPage($page, $perPage)->values(),
+        'total' => $filteredProducts->count(),
+        'per_page' => $perPage,
+        'current_page' => $page
+    ]);
 })->name('subcategory');
 
 Route::get('/products', function () {

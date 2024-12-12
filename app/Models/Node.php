@@ -11,6 +11,7 @@ class Node extends Model
 
     protected $fillable = [
         'name',
+        'image',
     ];
 
     public function subcategories()

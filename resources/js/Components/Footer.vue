@@ -5,8 +5,9 @@ const settingStore = useSettingStore()
 </script>
 
 <template>
-    <footer class="container mt-12 mx-auto flex justify-between items-center py-6">
-        <div class="flex max-md:hidden flex-col gap-6">
+    <footer
+        class="container mt-12 mx-auto max-md:flex-col max-md:gap-5 max-md:items-start flex justify-between items-center py-6">
+        <div class="flex  flex-col gap-6">
             <div class="flex flex-col gap-0.5 flex-shrink-0">
                 <div class="flex items-center gap-1">
                     <img src="/assets/img/logo.svg" alt="logo" width="24" height="24" srcset="">
@@ -15,7 +16,7 @@ const settingStore = useSettingStore()
                 </div>
                 <span class="text-gray_icon leading-none text-sm">г. Краснодар</span>
             </div>
-            <div class="flex-1 contact-container">
+            <div class="flex-1 max-md:hidden contact-container">
                 <div class="contact-element">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
                         <path
@@ -42,8 +43,8 @@ const settingStore = useSettingStore()
                 </div>
             </div>
         </div>
-        <div class="flex max-md:hidden flex-col gap-6">
-            <div class="nav-menu">
+        <div class="flex flex-col gap-6">
+            <div class="nav-menu max-md:hidden">
                 <a href="#">О компании</a>
                 <a href="#">Услуги</a>
                 <a href="#">Доставка</a>

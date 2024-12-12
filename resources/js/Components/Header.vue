@@ -47,7 +47,7 @@ function handleFocus() {
                         <transition name="down_slide">
                             <div v-if="searchStore.options.show"
                                 class="absolute top-20 left-0 p-4 z-50 min-w-[750px] w-full bg-white rounded-2xl shadow-lg flex flex-col gap-5">
-                                <div class="flex flex-col gap-3">
+                                <div class=" hidden flex-col gap-3">
                                     <p class="text-black font-bold leading-none">Недавно вы искали</p>
                                     <div class="flex flex-col gap-2">
                                         <p class="text-gray_icon text-sm">
@@ -68,34 +68,36 @@ function handleFocus() {
                                             'Популярные товары'
                                     }}</p>
                                     <div class="flex items-center gap-3 overflow-x-auto">
-                                        <div v-if="searchStore.options?.input?.length > 0"
+                                        <Link :href="`/product/${item.id}`"
+                                            v-if="searchStore.options?.input?.length > 0"
                                             v-for="item in searchStore.options.items"
-                                            class="product-card gap-3 max-w-[230px]">
-                                            <img class="w-full h-[175px]" :src="'/storage/' + item?.images" alt="">
-                                            <div class="flex flex-col gap-4">
-                                                <div class="product-text">
-                                                    <p class="font-medium">{{ item?.name }}</p>
-                                                </div>
-                                                <button @click="useContactModalStore().openModal()"
-                                                    class="btn btn-primary w-fit">
-                                                    Заказать звонок
-                                                </button>
+                                            class="product-card flex-shrink-0 gap-3">
+                                        <img class=" w-[175px] h-[175px]" :src="'/storage/' + item?.images" alt="">
+                                        <div class="flex flex-col gap-4">
+                                            <div class="product-text">
+                                                <p class="font-medium">{{ item?.name }}</p>
                                             </div>
+                                            <button @click.prevent="useContactModalStore().openModal()"
+                                                class="btn btn-primary w-fit">
+                                                Заказать звонок
+                                            </button>
                                         </div>
-                                        <div v-else v-for="popularProduct in productStore.options.popularProducts"
-                                            class="product-card gap-3 max-w-[230px]">
-                                            <img class="w-full h-[175px]" :src="'/storage/' + popularProduct?.images"
-                                                alt="">
-                                            <div class="flex flex-col gap-4">
-                                                <div class="product-text">
-                                                    <p class="font-medium">{{ popularProduct?.name }}</p>
-                                                </div>
-                                                <button @click="useContactModalStore().openModal()"
-                                                    class="btn btn-primary w-fit">
-                                                    Заказать звонок
-                                                </button>
+                                        </Link>
+                                        <Link :href="`/product/${popularProduct.id}`" v-else
+                                            v-for="popularProduct in productStore.options.popularProducts"
+                                            class="product-card flex-shrink-0 gap-3">
+                                        <img class="h-[175px] w-[175px]" :src="'/storage/' + popularProduct?.images"
+                                            alt="">
+                                        <div class="flex flex-col gap-4">
+                                            <div class="product-text">
+                                                <p class="font-medium">{{ popularProduct?.name }}</p>
                                             </div>
+                                            <button @click.prevent="useContactModalStore().openModal()"
+                                                class="btn btn-primary w-fit">
+                                                Заказать звонок
+                                            </button>
                                         </div>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>
@@ -140,13 +142,13 @@ function handleFocus() {
             </div>
             <div class="subheader-container">
                 <div class="subheader-first-container">
-                    <button class="btn btn-secondary">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-                            <path d="M2 8H14M2 4H14M2 12H10" stroke="#949494" stroke-width="1.6" stroke-linecap="round"
-                                stroke-linejoin="round" />
-                        </svg>
-                        <span>Каталог</span>
-                    </button>
+                    <Link href="/catalog" class="btn btn-secondary">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <path d="M2 8H14M2 4H14M2 12H10" stroke="#949494" stroke-width="1.6" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                    <span>Каталог</span>
+                    </Link>
                     <div class="max-md:hidden nav-menu">
                         <a href="#">О компании</a>
                         <a href="#">Услуги</a>
@@ -156,7 +158,8 @@ function handleFocus() {
                         <Link href="/contacts">Контакты</Link>
                     </div>
                 </div>
-                <button @click="useContactModalStore().openModal()" class="btn btn-primary">
+                <button @click="useContactModalStore().openModal()"
+                    class="btn btn-primary max-sm:ml-3 flex justify-center max-sm:w-full">
                     Заказать звонок
                 </button>
             </div>

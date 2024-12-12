@@ -3,12 +3,31 @@ import Layout from '@/Layouts/Layout.vue';
 import { Link } from '@inertiajs/vue3';
 import { useContactModalStore } from '@/Stores/Modals/ContactStore';
 import { useSettingStore } from '@/Stores/SettingStore';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import 'swiper/css';
+import { ref } from 'vue';
+
 
 const props = defineProps({
     products: Object,
     categories: Object
 })
 
+const swiperInstance = ref(null);
+
+const onSwiper = (swiper) => {
+    swiperInstance.value = swiper;
+};
+
+const onSlideChange = () => {
+    console.log('Слайд изменен');
+};
+
+const slideNext = () => {
+    if (swiperInstance.value) {
+        swiperInstance.value.slideNext();
+    }
+};
 const settingStore = useSettingStore()
 </script>
 
@@ -17,18 +36,18 @@ const settingStore = useSettingStore()
         <main class="flex flex-col gap-24">
             <section class="relative">
                 <div class="container py-10 mx-auto">
-                    <div class="max-w-[570px] flex flex-col gap-28">
-                        <h1 class="text-[56px] leading-[92%] tracking-[-2.8px] font-bold RF-Dewi-Extended">
+                    <div class="lg:max-w-[570px] flex flex-col gap-8 sm:gap-28">
+                        <h1 class="text-3xl sm:text-[56px] leading-[92%] font-bold RF-Dewi-Extended">
                             Комплексное и оптовые поставки металлопроката <br><span class="text-black/35">по всей
                                 России</span>
                         </h1>
                         <div class="flex flex-col gap-8">
-                            <p class="text-gray_icon font-medium text-xl">Мы предлагаем широкий ассортимент
+                            <p class="text-gray_icon font-normal text-xl">Мы предлагаем широкий ассортимент
                                 металлопроката,
                                 соответствующего все требованиям ГОСТ, применяемого в строительных, промышленных и
                                 производственных целях.</p>
                             <button @click="useContactModalStore().openModal()"
-                                class="btn btn-primary  p-6  md:w-fit  flex justify-center">
+                                class="btn btn-primary  p-6  sm:w-fit  flex justify-center">
                                 Заказать звонок
                             </button>
                         </div>
@@ -41,53 +60,98 @@ const settingStore = useSettingStore()
 
             </section>
             <section class="flex  overflow-x-hidden flex-col gap-12 ">
-                <div class="container max-md:flex-col   mx-auto flex justify-between md:items-center">
-                    <div class="flex max-md:flex-col max-md:gap-2 title md:items-center gap-4">
+                <div class="container max-sm:flex-col   mx-auto flex justify-between md:items-center">
+                    <div class="flex max-sm:flex-col max-md:gap-2 title sm:items-center gap-4">
                         <p class="title leading-none font-bold ">Наш каталог</p>
-                        <p class="title max-md:text-xl leading-none text-black/35 font-bold ">{{ categories.length }}
+                        <p class="title max-sm:text-xl max-md:text-2xl leading-none text-black/35 font-bold ">{{
+                            categories.length }}
                             категорий</p>
                     </div>
-                    <Link href="/catalog" class="flex max-md:hidden  items-center text-gray_icon gap-1">
+                    <Link href="/catalog" class="flex max-sm:hidden  items-center text-gray_icon gap-1">
                     Смотреть все категории
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11" fill="none">
                         <path d="M1.66683 5.5H12.3335M12.3335 5.5L8.3335 1.5M12.3335 5.5L8.3335 9.5" stroke="#4B4951"
                             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     </Link>
-                    <Link href="/catalog" class="max-md:flex hidden btn btn-secondary leading-none mt-3 max-md:w-fit ">
+                    <Link href="/catalog" class="max-sm:flex hidden btn btn-secondary leading-none mt-3 max-md:w-fit ">
                     Смотреть все категории
 
                     </Link>
                 </div>
                 <div class="container mx-auto relative">
 
-                    <div class="flex items-center overflow-scroll  absolute gap-4">
+                    <div class="flex items-center overflow-scroll   gap-4">
+                        <Swiper :loop="false" :allow-touch-move="true" :breakpoints="{
+                            320: {
+                                slidesPerView: 1,
+                                spaceBetween: 20
+                            },
+                            768: {
+                                slidesPerView: 2,
+                                spaceBetween: 20
+                            },
+                            1024: {
+                                slidesPerView: 3,
+                                spaceBetween: 20
+                            }
+                        }" @swiper="onSwiper" @slideChange="onSlideChange">
+                            <SwiperSlide v-for="category in categories">
+                                <div class="category-card">
+                                    <p class="text-black/80 text-xl max-sm:hidden">{{ category.products_count }}
+                                        товара</p>
+                                    <img :src="'/storage/' + category.image" class="img-category" alt="category">
+                                    <div
+                                        class="flex items-center justify-center max-w-[200px] text-center flex-col gap-6">
+                                        <p class="text-dark text-2xl leading-[100%] font-bold RF-Dewi-Extended">{{
+                                            category.name }}</p>
+                                        <Link :href="'/category/' + category.id" class="next max-sm:hidden">
+                                        Перейти
+                                        <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M1 13L7 7L1 1" stroke="#7645EF" stroke-width="1.6"
+                                                stroke-linecap="round" stroke-linejoin="round" />
+                                        </svg>
 
-                        <div v-for="category in categories" class="category-card">
-                            <p class="text-black/80 text-xl">{{ category.products_count }} товара</p>
-                            <img :src="'/storage/' + category.image" class="img-category" alt="category">
-                            <div class="flex items-center justify-center max-w-[200px] text-center flex-col gap-6">
-                                <p class="text-dark text-2xl leading-[100%] font-bold RF-Dewi-Extended">{{
-                                    category.name }}</p>
-                                <Link :href="'/category/' + category.id" class="next">
-                                Перейти
-                                <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M1 13L7 7L1 1" stroke="#7645EF" stroke-width="1.6" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
 
-                                </Link>
-                            </div>
-                        </div>
+                                        </Link>
+                                    </div>
+                                    <p class="text-black/80 text-xl sm:hidden">{{ category.products_count }}
+                                        товара</p>
+                                </div>
+                            </SwiperSlide>
+
+                        </Swiper>
 
                     </div>
-                    <div class="h-[380px]"></div>
+
+                    <div
+                        class="absolute flex gap-2 transform -translate-x-1/2 z-10 w-full justify-between px-5 left-1/2 top-1/2">
+                        <button v-if="swiperInstance?.activeIndex > 0" @click="swiperInstance?.slidePrev()"
+                            class="rounded-full bg-white h-10 w-10 flex items-center justify-center shadow-md">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M7 1L1 7L7 13" stroke="#7645EF" stroke-width="1.6" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                        <div v-else></div>
+                        <button
+                            v-if="swiperInstance?.activeIndex < (swiperInstance?.slides?.length - swiperInstance?.params?.slidesPerView)"
+                            @click="swiperInstance?.slideNext()"
+                            class="rounded-full bg-white h-10 w-10 flex items-center justify-center shadow-md">
+                            <svg width="8" height="14" viewBox="0 0 8 14" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1 13L7 7L1 1" stroke="#7645EF" stroke-width="1.6" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+                            </svg>
+                        </button>
+                    </div>
                 </div>
 
             </section>
             <section class="flex container  items-center justify-center mx-auto flex-col gap-12">
-                <h2 class="title-big text-center">Уникальные<br>преимущества</h2>
+                <h2 class="title-big text-center max-w-[630px]">Уникальные преимущества</h2>
                 <div class="grid md:grid-cols-2 gap-3 w-full">
                     <div class="advantages-card advantages-bg-1">
                         <div class="advantages-item">
@@ -111,7 +175,8 @@ const settingStore = useSettingStore()
                             </div>
                         </div>
                         <div class="advantages-card-text">
-                            <p>Работаем с ГОСОБОРОНЗАКАЗМИ и ГОСКОНТРАКТАМИ. Открытие отдельного банковского счета.</p>
+                            <p>Работаем с ГосОборон заказами и ГосКонтрактами. Открытие отдельного банковского счета.
+                            </p>
                             <span>Работа с государственными заказами представляет собой уникальную возможность для
                                 компаний, занимающихся комплексными и оптовыми поставками металлопродукта.</span>
                         </div>
@@ -165,9 +230,9 @@ const settingStore = useSettingStore()
             <section class="container mx-auto flex flex-col gap-12">
                 <div class="flex justify-between items-center">
                     <h2 class="title">
-                        Популярные
+                        Популярные товары
                     </h2>
-                    <Link href="/catalog" class="flex items-center text-gray_icon gap-1">
+                    <Link href="/catalog" class="flex max-sm:hidden items-center text-gray_icon gap-1">
                     Смотреть все категории
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="11" viewBox="0 0 14 11" fill="none">
                         <path d="M1.66683 5.5H12.3335M12.3335 5.5L8.3335 1.5M12.3335 5.5L8.3335 9.5" stroke="#4B4951"
@@ -176,40 +241,47 @@ const settingStore = useSettingStore()
                     </Link>
 
                 </div>
+
                 <div class="flex overflow-x-auto  md:grid grid-cols-4 gap-4">
+
                     <Link :href="`/product/${product.id}`" v-for="product in products" class="product-card shrink-0">
                     <p v-if="product.specifications.find(item => item.key === 'gost')?.value" class="gost">ГОСТ {{
                         product.specifications.find(item => item.key === 'gost')?.value }}</p>
                     <div class="image-wrapper">
-                        <img :src="'/storage/' + product.images[0]" alt="">
+                        <img :src="'/storage/' + (Array.isArray(product.images) ? product.images[0] : product.images)"
+                            alt="">
                     </div>
-                    <div class="flex flex-col gap-4">
+                    <div class="flex flex-col h-full justify-between gap-4">
+                        <p class="text-gray_icon text-xs">{{ product.specifications.map(spec => spec.value).join(', ')
+                            }}</p>
                         <div class="product-text">
-                            <!-- <p>В ЛК-Р, 12 мм</p> -->
                             <p>{{ product.name }}</p>
                         </div>
-                        <button @click="useContactModalStore().openModal()" class="btn btn-primary w-fit">
+                        <button @click.prevent="useContactModalStore().openModal()"
+                            class="btn btn-secondary w-fit mt-auto">
                             Заказать звонок
                         </button>
                     </div>
                     </Link>
 
                 </div>
+
             </section>
-            <section class="container mx-auto flex flex-col gap-12">
-                <h2 class="title">
+            <section class="container px-0 mx-auto flex flex-col gap-12">
+                <h2 class="title max-sm:px-8">
                     Занимаемся поставками <br>
                     металлопроката<br>
                     по всей России
                 </h2>
-                <div>
-                    <img src="/assets/img/map.svg" alt="">
+                <div class="max-sm:pl-8">
+                    <img class="flex lg:hidden " src="/assets/img/map_tablet.png" alt="">
+                    <img class="hidden lg:block" src="/assets/img/map_pc.png" alt="">
 
                 </div>
             </section>
 
             <section class="container mx-auto max-md:flex-col flex items-start gap-28">
-                <div class="flex max-w-[500px] flex-col gap-10">
+                <div class="flex md:max-w-[500px] flex-col gap-10">
                     <div class="flex flex-col gap-6">
                         <h2 class="title">Нужна консультация по выбору металлопроката?</h2>
                         <p class="text-lg">Оставьте заявку, и наш специалист свяжется с вами для подробной консультации.
@@ -289,4 +361,17 @@ const settingStore = useSettingStore()
     </Layout>
 </template>
 
-<style scoped></style>
+<style scoped>
+.swiper {
+    width: 100%;
+    height: 100%;
+}
+
+
+
+.swiper-slide {
+    max-width: 370px;
+    height: auto;
+    flex: 1;
+}
+</style>

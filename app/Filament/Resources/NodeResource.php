@@ -32,6 +32,10 @@ class NodeResource extends Resource
                     ->required()
                     ->label('Название')
                     ->maxLength(255),
+
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->label('Изображение'),
             ]);
     }
 
@@ -41,6 +45,8 @@ class NodeResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Название'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Изображение'),
             ])
             ->filters([
                 //

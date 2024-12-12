@@ -45,6 +45,7 @@ const props = defineProps({
                 <Product v-for="product in props.products" :product="product" />
 
             </section>
+
         </main>
     </Layout>
 </template>

@@ -13,7 +13,7 @@ const props = defineProps({
 <template>
     <Layout>
         <main class="flex flex-col py-14 gap-12">
-            <section class="flex flex-col items-start container mx-auto justify-start gap-6">
+            <section class="hidden md:flex  flex-col items-start container mx-auto justify-start gap-6">
                 <div class="flex items-center gap-3">
                     <a class="text-gray_icon/70" href="#">Главная</a>
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -33,24 +33,26 @@ const props = defineProps({
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
-                    <span>Лист стальной высокопрочный</span>
+                    <span>{{ props.product.name }}</span>
                 </div>
             </section>
             <section class="flex container mx-auto justify-between flex-wrap">
-                <img class="lg:w-[616px] w-full" :src="'/storage/' + props.product?.images[0]" alt="">
+                <img class="lg:w-[616px] rounded-3xl w-full"
+                    :src="'/storage/' + (Array.isArray(props.product.images) ? props.product.images[0] : props.product.images)"
+                    alt="">
                 <div class="flex flex-col py-6 gap-8 justify-between w-full lg:w-[552px]">
                     <div class="flex flex-col">
                         <div class="flex flex-col gap-4">
-                            <span class="text-3xl lg:text-[56px] RF-Dewi-Extended font-bold">
-                                Лист стальной высокопрочный
+                            <span class="text-3xl lg:text-[56px] leading-none font-bold">
+                                {{ props.product.name }}
                             </span>
                             <span class="text-base font-normal lg:text-xl ">
-                                Высокопрочная конструкционная сталь с мелким зерном, разработанная немецкой компанией
+                                {{ props.product.description }}
                             </span>
                         </div>
                     </div>
-                    <div class="flex flex-col border-t-2 border-b-2 border-solid border-border py-6 gap-3">
-                        <div v-for="spec in props.product?.specifications" class="flex justify-between gap-1">
+                    <div class="flex flex-col border-t-2 border-b-2 border-solid border-border  py-6 gap-3">
+                        <div v-for="spec in props.product?.specifications" class="catalog-item-element ">
                             <span class="text-base text-gray-1 font-semibold">
                                 {{ spec.name }}
                             </span>

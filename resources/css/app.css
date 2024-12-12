@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
 
 * {
     --vs-input-bg: #e9e9e9;
@@ -66,8 +67,14 @@ body {
     font-size: 16px;
     font-weight: 400;
     color: black;
-    font-family: "RF Dewi", sans-serif;
-    @apply max-md:px-5
+    font-family: "Roboto Flex", sans-serif;
+
+}
+
+section,
+header,
+footer {
+    @apply max-sm:px-8
 }
 
 .loader {
@@ -146,15 +153,20 @@ body {
 }
 
 .title-big {
-    @apply leading-[92%] tracking-[-2.8px] font-bold RF-Dewi-Extended text-black text-[28px] md:text-[56px];
+    @apply leading-[92%] font-bold RF-Dewi-Extended text-black text-[28px] md:text-[56px];
 }
 
 .RF-Dewi-Extended {
-    font-family: "RF Dewi Extended", sans-serif;
+    font-family: "Roboto Flex", sans-serif;
+}
+
+.swiper-wrapper {
+    align-items: stretch !important;
 }
 
 .category-card {
-    @apply rounded-3xl bg-light_gray_2 flex flex-col justify-center items-center gap-14 py-6 px-16 flex-shrink-0;
+
+    @apply rounded-3xl bg-light_gray_2 min-w-[280px] lg:min-w-[370px] max-h-[380px] h-full flex flex-col justify-center items-center gap-5 sm:gap-14 py-6 px-10 lg:px-16;
 }
 
 .next {
@@ -166,7 +178,7 @@ body {
 }
 
 .advantages-card {
-    @apply rounded-3xl bg-light_gray_2 w-full flex flex-col justify-center items-center gap-14 py-20;
+    @apply rounded-3xl bg-light_gray_2 w-full flex flex-col justify-center items-center gap-14 py-5 px-5 sm:py-20;
 }
 
 .advantages-card-text span {
@@ -175,7 +187,7 @@ body {
 
 .advantages-card-text p {
     @apply text-xl md:text-2xl font-bold leading-[110%];
-    font-family: "RF Dewi Extended", sans-serif;
+    font-family: "Roboto Flex", sans-serif;
 }
 
 .advantages-card-text {
@@ -183,7 +195,7 @@ body {
 }
 
 .advantages-item div:last-child {
-    @apply text-gray_icon/80 font-bold bg-light_gray_2 rounded-[10px];
+    @apply text-gray_icon/80 bg-light_gray_2 rounded-[10px];
 }
 
 .advantages-item div {
@@ -191,12 +203,12 @@ body {
 }
 
 .advantages-item {
-    @apply p-1.5 rounded-[16px] bg-white flex flex-col max-w-[350px] w-full max-md:px-5;
+    @apply p-1.5 rounded-[16px] bg-white flex text-nowrap flex-col max-w-[350px] w-full max-md:px-1;
 }
 
 .title {
-    @apply text-[40px] max-md:text-2xl font-bold leading-[92%];
-    font-family: "RF Dewi Extended", sans-serif;
+    @apply text-[40px] max-sm:text-2xl max-md:text-4xl font-bold leading-[92%];
+    font-family: "Roboto Flex", sans-serif;
 }
 
 .checkbox-wrapper {
@@ -221,15 +233,19 @@ body {
 }
 
 .product-card .product-text p {
-    @apply leading-none;
+    @apply leading-none font-semibold;
 }
 
 .product-card .product-text {
     @apply flex flex-col gap-2 text-gray_icon;
 }
 
+.product-card .image-wrapper img {
+    @apply max-h-[180px] object-contain max-w-[180px] rounded-3xl;
+}
+
 .product-card .image-wrapper {
-    @apply px-6 max-h-[180px];
+    @apply px-6;
 }
 
 .product-card {
@@ -254,7 +270,7 @@ label span {
 }
 
 .info-company-container {
-    @apply flex flex-col gap-6;
+    @apply flex flex-col gap-6 w-full;
 }
 
 .info-company-container .item p {
@@ -292,7 +308,7 @@ label span {
 
 .catalog-item-title {
     @apply text-2xl font-bold;
-    font-family: "RF Dewi Extended", sans-serif;
+    font-family: "Roboto Flex", sans-serif;
 }
 
 .catalog-item-info {
@@ -318,7 +334,7 @@ label span {
 }
 
 .catalog-item-element span:first-child::after {
-    content: "............................................................................................";
+    content: "......................................................................................................................................................................................................................................";
     position: absolute;
     color: #c2c1be;
 }
