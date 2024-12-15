@@ -16,8 +16,22 @@ class AddPopularProducts
      */
     public function handle(Request $request, Closure $next): Response
     {
-        $popularProducts = Product::query()->limit(10)->get()->toArray();
-        $request->attributes->set('popularProducts', $popularProducts);
+        try {
+            $popularProducts = Product::query()
+                ->orderBy('views', 'desc')
+                ->limit(10)
+                ->get()
+                ->toArray();
+            
+            if (!empty($popularProducts)) {
+                $request->attributes->set('popularProducts', $popularProducts);
+            } else {
+                $request->attributes->set('popularProducts', []);
+            }
+        } catch (\Exception $e) {
+            $request->attributes->set('popularProducts', []);
+        }
+
         return $next($request);
     }
 }

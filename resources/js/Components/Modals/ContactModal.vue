@@ -38,6 +38,7 @@ const options = useContactModalStore().options;
                 <div class="input-wrapper">
                     <input type="text" id="name" placeholder="Имя и фамилия" autocomplete="off">
                 </div>
+
             </div>
             <div class="input-label-block">
                 <label for="phone">Контактный телефон <span>*</span></label>
@@ -54,12 +55,16 @@ const options = useContactModalStore().options;
             <div class="input-label-block">
                 <label for="email">E-mail</label>
                 <div class="input-wrapper">
-                    <input type="email" id="email" placeholder="you@email.com" autocomplete="off">
+                    <input type="email" id="email" v-model="useContactModalStore().options.data.email"
+                        placeholder="you@email.com" autocomplete="off">
                 </div>
+                <p v-if="useContactModalStore().options.errors?.length > 0" class="text-red text-xs">
+                    {{ useContactModalStore().options.errors[0] }}
+                </p>
             </div>
 
         </div>
-        <button class="btn text-center btn-primary  justify-center">
+        <button class="btn text-center btn-primary  justify-center" @click="useContactModalStore().validate()">
             Заказать звонок
         </button>
     </VueFinalModal>

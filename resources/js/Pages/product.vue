@@ -15,11 +15,11 @@ const props = defineProps({
         <main class="flex flex-col py-14 gap-12">
             <section class="hidden md:flex  flex-col items-start container mx-auto justify-start gap-6">
                 <div class="flex items-center gap-3">
-                    <a class="text-gray_icon/70" href="#">Главная</a>
+                    <a class="text-gray_icon/70" href="/">Главная</a>
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
-                    <a class="text-gray_icon/70" href="#">Каталог</a>
+                    <a class="text-gray_icon/70" href="/catalog">Каталог</a>
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
@@ -28,8 +28,9 @@ const props = defineProps({
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
-                    <Link class="text-gray_icon/70" :href="route('category', props.subcategory.id)">{{
-                        props.subcategory.name }}</Link>
+                    <Link class="text-gray_icon/70"
+                        :href="route('category', { category: props.category.id, subcategory: props.subcategory.id })">{{
+                            props.subcategory.name }}</Link>
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>

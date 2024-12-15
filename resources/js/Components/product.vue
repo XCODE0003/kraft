@@ -1,5 +1,6 @@
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import { useContactModalStore } from '@/Stores/Modals/ContactStore';
 import Specification from '@/Components/specification.vue';
 const props = defineProps({
     product: {
@@ -7,6 +8,8 @@ const props = defineProps({
         required: true
     }
 })
+const contactStore = useContactModalStore();
+
 </script>
 
 <template>
@@ -29,6 +32,6 @@ const props = defineProps({
             </div>
         </div>
     </div>
-    <button class="btn btn-white">Связаться</button>
+    <button @click.prevent.stop="contactStore.openModal()" class="btn btn-white">Связаться</button>
     </Link>
 </template>

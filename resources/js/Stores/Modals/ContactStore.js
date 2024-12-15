@@ -15,6 +15,7 @@ export const useContactModalStore = defineStore('contactModal', () => {
         lockScroll: true,
         reserveScrollBarGap: true,
         swipeToClose: 'none',
+        errors: [],
         data: {
             name: null,
             email: null,
@@ -34,5 +35,17 @@ export const useContactModalStore = defineStore('contactModal', () => {
         options.value.modelValue = false
     }
 
-    return { options, openModal, closeModal }
+    const setErrors = (errors) => {
+        options.value.errors = errors
+    }
+
+
+    const validate = () => {
+        if (options.value.data.name && options.value.data.phone) {
+            return true
+        }
+        options.value.errors = ['Поля обязательны для заполнения']
+        return false
+    }
+    return { options, openModal, closeModal, setErrors, validate }
 }) 

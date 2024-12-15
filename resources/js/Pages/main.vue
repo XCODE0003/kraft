@@ -34,7 +34,9 @@ const settingStore = useSettingStore()
 <template>
     <Layout>
         <main class="flex flex-col gap-24">
-            <section class="relative">
+
+
+            <section class="relative main_page_container   ">
                 <div class="container py-10 mx-auto">
                     <div class="lg:max-w-[570px] flex flex-col gap-8 sm:gap-28">
                         <h1 class="text-3xl sm:text-[56px] leading-[92%] font-bold RF-Dewi-Extended">
@@ -54,8 +56,8 @@ const settingStore = useSettingStore()
                     </div>
                 </div>
 
-                <div class="max-md:hidden absolute bottom-0 right-0 -z-10 w-[50%]">
-                    <img src="/assets/img/metall.png" class="object-contain h-[700px]" alt="metall" srcset="">
+                <div class="max-md:hidden overflow-hidden absolute bottom-0 right-0 -z-10 w-[50%]">
+                    <img src="/assets/img/metall.png" class=" object-contain h-[700px]" alt="metall" srcset="">
                 </div>
 
             </section>
@@ -345,7 +347,7 @@ const settingStore = useSettingStore()
                             </div>
                             <div class="company-item">
                                 <p>ОГРН</p>
-                                <span>{{ settingStore.options.settings?.ogrn }}</span>
+                                <span>{{ settingStore.options.settings?.orgn }}</span>
                             </div>
                         </div>
                     </div>

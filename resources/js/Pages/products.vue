@@ -1,6 +1,7 @@
 <script setup>
 import Layout from '@/Layouts/Layout.vue';
 import Product from '@/Components/product.vue';
+import { Link } from '@inertiajs/vue3';
 import VueSelect from "vue3-select-component";
 import { ref, watch } from 'vue';
 const props = defineProps({
@@ -59,6 +60,38 @@ const goToPage = (page) => {
         getProducts(page);
     }
 };
+
+const getVisiblePages = () => {
+    const delta = 2; // Количество страниц до и после текущей
+    const range = [];
+    const rangeWithDots = [];
+    let l;
+
+    for (let i = 1; i <= totalPages.value; i++) {
+        if (
+            i === 1 ||
+            i === totalPages.value ||
+            i >= currentPage.value - delta &&
+            i <= currentPage.value + delta
+        ) {
+            range.push(i);
+        }
+    }
+
+    for (let i of range) {
+        if (l) {
+            if (i - l === 2) {
+                rangeWithDots.push(l + 1);
+            } else if (i - l !== 1) {
+                rangeWithDots.push('...');
+            }
+        }
+        rangeWithDots.push(i);
+        l = i;
+    }
+
+    return rangeWithDots;
+};
 </script>
 
 <template>
@@ -66,18 +99,19 @@ const goToPage = (page) => {
         <main class="flex flex-col py-14 gap-12">
             <section class="flex flex-col items-center justify-center gap-6">
                 <div class="flex flex-wrap max-md:justify-center items-center gap-3">
-                    <a class="text-gray_icon/70" href="#">Главная</a>
+                    <Link class="text-gray_icon/70" :href="`/`">Главная</Link>
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
-                    <a class="text-gray_icon/70" href="#">Каталог</a>
+                    <Link class="text-gray_icon/70" :href="`/catalog`">Каталог</Link>
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
-                    <a class="text-gray_icon/70" href="#">{{ category.name }}</a>
+                    <Link class="text-gray_icon/70" :href="`/category/${category.id}`">{{ category.name }}
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
+                    </Link>
                     <span>{{ subcategory.name }}</span>
                 </div>
                 <h1 id="catalog-title" class=" text-[56px] leading-none font-bold">{{ subcategory.name }}</h1>
@@ -136,8 +170,11 @@ const goToPage = (page) => {
                                 </svg>
                             </button>
                             <div class="flex gap-1">
-                                <template v-for="page in totalPages" :key="page">
-                                    <span class="rounded-2xl w-12 h-12 items-center justify-center flex"
+                                <template v-for="page in getVisiblePages()" :key="page">
+                                    <span v-if="page === '...'" class="w-12 h-12 items-center justify-center flex">
+                                        {{ page }}
+                                    </span>
+                                    <span v-else class="rounded-2xl w-12 h-12 items-center justify-center flex"
                                         :class="{ 'bg-black text-white': page === currentPage }" @click="goToPage(page)"
                                         style="cursor: pointer">
                                         {{ page }}

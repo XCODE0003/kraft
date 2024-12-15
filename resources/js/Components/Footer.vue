@@ -6,7 +6,7 @@ const settingStore = useSettingStore()
 
 <template>
     <footer
-        class="container mt-12 mx-auto max-md:flex-col max-md:gap-5 max-md:items-start flex justify-between items-center py-6">
+        class="container mt-auto  mx-auto max-md:flex-col max-md:gap-5 max-md:items-start flex justify-between items-center py-6">
         <div class="flex  flex-col gap-6">
             <div class="flex flex-col gap-0.5 flex-shrink-0">
                 <div class="flex items-center gap-1">
@@ -57,3 +57,5 @@ const settingStore = useSettingStore()
         </div>
     </footer>
 </template>
+
+<style scoped></style>

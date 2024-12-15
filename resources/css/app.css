@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap");
 
 * {
     --vs-input-bg: #e9e9e9;
@@ -68,13 +68,12 @@ body {
     font-weight: 400;
     color: black;
     font-family: "Roboto Flex", sans-serif;
-
 }
 
 section,
 header,
 footer {
-    @apply max-sm:px-8
+    @apply max-sm:px-8;
 }
 
 .loader {
@@ -103,7 +102,7 @@ footer {
 }
 
 .input-wrapper input {
-    @apply bg-transparent outline-none text-sm border-none shadow-transparent leading-none p-0 focus:ring-0;
+    @apply bg-transparent outline-none text-sm border-none w-full flex-1 shadow-transparent leading-none p-0 focus:ring-0;
 }
 
 .contact-container {
@@ -165,7 +164,6 @@ footer {
 }
 
 .category-card {
-
     @apply rounded-3xl bg-light_gray_2 min-w-[280px] lg:min-w-[370px] max-h-[380px] h-full flex flex-col justify-center items-center gap-5 sm:gap-14 py-6 px-10 lg:px-16;
 }
 
@@ -252,14 +250,7 @@ footer {
     @apply p-5 rounded-3xl bg-light_gray_2 flex flex-col gap-5;
 }
 
-svg path {
-    transition: fill 0.3s ease;
-    cursor: pointer;
-}
 
-svg path:hover {
-    fill: #7645ef !important;
-}
 
 .input-label-block {
     @apply flex flex-col gap-3;
@@ -267,6 +258,12 @@ svg path:hover {
 
 label span {
     @apply text-red;
+}
+
+#app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .info-company-container {
@@ -370,4 +367,10 @@ span {
 
 .product-item {
     @apply flex items-start justify-between py-6 px-3 border-b border-border_gray max-md:flex-col max-md:gap-5;
+}
+
+@media (min-width: 1600px) {
+    .main_page_container {
+        @apply container mx-auto;
+    }
 }

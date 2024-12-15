@@ -40,7 +40,7 @@ class SettingResource extends Resource
                 Forms\Components\TextInput::make('kpp')
                     ->label('КПП'),
                 Forms\Components\TextInput::make('orgn')
-                    ->label('ОРН'),
+                    ->label('ОРГН'),
                 Forms\Components\TextInput::make('mail_address')
                     ->label('Почтовый адрес'),
                 Forms\Components\TextInput::make('fakt_address')

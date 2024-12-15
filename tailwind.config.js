@@ -1,4 +1,3 @@
-
 /** @type {import('tailwindcss').Config} */
 export default {
     content: [
@@ -14,6 +13,7 @@ export default {
             md: '769px',
             lg: '980px',
             xl: '1215px',
+
         },
         extend: {
             colors: {

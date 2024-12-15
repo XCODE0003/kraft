@@ -94,7 +94,9 @@ Route::get('/category/{category}', function ($category = null) {
     $category = Category::where('id', $category)->first();
     $subcategories = SubCategory::where('category_id', $category->id)->get();
     $nodes = Node::whereIn('id', $subcategories->pluck('node_id'))->get();
-    $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))->get();
+    
+    $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))
+        ->paginate(10);
 
     if ($nodes->count() > 0) {
         $subcategories = $nodes;
@@ -108,7 +110,6 @@ Route::get('/category/{category}', function ($category = null) {
             $subcategory->products_count = Product::where('subcategory_id', $subcategory->id)->count();
         }
     }
-
 
     return Inertia::render('category', compact('category', 'subcategories', 'products', 'is_nodes'));
 })->name('category');
