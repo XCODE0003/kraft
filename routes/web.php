@@ -94,7 +94,7 @@ Route::get('/category/{category}', function ($category = null) {
     $category = Category::where('id', $category)->first();
     $subcategories = SubCategory::where('category_id', $category->id)->get();
     $nodes = Node::whereIn('id', $subcategories->pluck('node_id'))->get();
-    
+
     $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))
         ->paginate(10);
 
@@ -118,17 +118,22 @@ Route::get('/node/{node}', function ($node) {
     $is_nodes = false;
     $node = Node::where('id', $node)->first();
     $subcategories = SubCategory::where('node_id', $node->id)->get();
+
     foreach ($subcategories as $subcategory) {
         $subcategory->products_count = Product::where('subcategory_id', $subcategory->id)->count();
     }
+
     $category = $node;
-    $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))->get();
+
+    $products = Product::whereIn('subcategory_id', $subcategories->pluck('id'))
+        ->paginate(10);
+
     return Inertia::render('category', compact('node', 'category', 'subcategories', 'products', 'is_nodes'));
 })->name('node');
 Route::get('/category/{category}/{subcategory}', function ($category, $subcategory) {
     $category = Category::where('id', $category)->first();
     $subcategory = SubCategory::where('id', $subcategory)->first();
-    
+
     $products = Product::where('subcategory_id', $subcategory->id)->paginate(10);
 
     $filters = [];
@@ -157,9 +162,9 @@ Route::get('/category/{category}/{subcategory}', function ($category, $subcatego
 Route::get('/category/{category}/{subcategory}/filters', function ($category, $subcategory, Request $request) {
     $category = Category::where('id', $category)->first();
     $subcategory = SubCategory::where('id', $subcategory)->first();
-    
+
     $query = Product::where('subcategory_id', $subcategory->id);
-    
+
     $filteredProducts = $query->get()->filter(function ($product) use ($request) {
         foreach ($request->except('page') as $key => $value) {
             $specExists = collect($product->specifications)->contains(function ($spec) use ($key, $value) {
