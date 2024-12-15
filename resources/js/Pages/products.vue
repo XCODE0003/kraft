@@ -98,18 +98,23 @@ const getVisiblePages = () => {
     <Layout>
         <main class="flex flex-col py-14 gap-12">
             <section class="flex flex-col items-center justify-center gap-6">
-                <div class="flex flex-wrap max-md:justify-center items-center gap-3">
-                    <Link class="text-gray_icon/70" :href="`/`">Главная
+                <div class="flex flex-wrap items-center gap-3">
+
+                    <Link class="text-gray_icon/70 flex items-center gap-2" :href="`/`">
+                    Главная
+                    <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
+                    </svg>
+
+                    </Link>
+                    <Link class="text-gray_icon/70 flex items-center gap-2" :href="`/catalog`">
+                    Каталог
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
                     </Link>
-                    <Link class="text-gray_icon/70" :href="`/catalog`">Каталог
-                    <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
-                    </svg>
-                    </Link>
-                    <Link class="text-gray_icon/70" :href="`/category/${category.id}`">{{ category.name }}
+                    <Link class="text-gray_icon/70 flex items-center gap-2" :href="`/category/${category.id}`">
+                    {{ category.name }}
                     <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
