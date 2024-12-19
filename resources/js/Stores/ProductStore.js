@@ -19,8 +19,11 @@ export const useProductStore = defineStore('product', () => {
         const { data } = await axios.get('/popular-products')
         options.value.popularProducts = data
     }
+    function getSpecification(key, specifications) {
+        let result = specifications.find(spec => spec.key === key)
+        return result?.name
+    }
 
 
-
-    return { options, init }
+    return { options, init, getSpecification }
 }) 

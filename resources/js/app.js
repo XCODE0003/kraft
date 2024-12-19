@@ -1,5 +1,7 @@
 import './bootstrap';
 import '../css/app.css';
+import PrimeVue from 'primevue/config';
+import Tooltip from 'primevue/tooltip';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
@@ -12,7 +14,6 @@ import { useProductStore } from './Stores/ProductStore';
 
 
 const vfm = createVfm()
-
 const pinia = createPinia()
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
@@ -21,12 +22,16 @@ createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue')),
     setup({ el, App, props, plugin }) {
-        return createApp({ render: () => h(App, props) })
-            .use(plugin)
+        const app = createApp({ render: () => h(App, props) });
+
+        app.use(plugin)
             .use(vfm)
             .use(pinia)
             .use(ZiggyVue)
-            .mount(el);
+            .use(PrimeVue)
+            .directive('tooltip', Tooltip);  // Затем регистрируем директиву
+
+        return app.mount(el);
     },
     progress: {
         color: '#4B5563',

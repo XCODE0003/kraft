@@ -6,13 +6,14 @@ use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use App\Models\Specifications;
-
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Forms\Components\Section;
+use App\Models\Node;
 use Filament\Tables\Table;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Forms\Components\Split;
 use Filament\Forms\Components\TextInput;
 use App\Service\Filament\FormatProductOption;
@@ -41,6 +42,7 @@ class ProductResource extends Resource
                     ->schema([
                         Forms\Components\TextInput::make('name')
                             ->required()
+
                             ->label('Название')
                             ->maxLength(255),
                         Forms\Components\Select::make('subcategory_id')
@@ -61,17 +63,17 @@ class ProductResource extends Resource
 
 
 
-                Section::make('Дополнительные характеристики')
-                    ->schema([
-                        Forms\Components\Toggle::make('is_closeout')
-                            ->label('Распродажа'),
-                        Forms\Components\Toggle::make('is_pickup')
-                            ->label('Самовывоз'),
-                        Forms\Components\Toggle::make('is_pickup_courier')
-                            ->label('Курьер'),
-                        Forms\Components\Toggle::make('is_pickup_point')
-                            ->label('Из пункта выдачи'),
-                    ])->columns(2),
+                // Section::make('Дополнительные характеристики')
+                //     ->schema([
+                //         Forms\Components\Toggle::make('is_closeout')
+                //             ->label('Распродажа'),
+                //         Forms\Components\Toggle::make('is_pickup')
+                //             ->label('Самовывоз'),
+                //         Forms\Components\Toggle::make('is_pickup_courier')
+                //             ->label('Курьер'),
+                //         Forms\Components\Toggle::make('is_pickup_point')
+                //             ->label('Из пункта выдачи'),
+                //     ])->columns(2),
                 Section::make('Характеристики')
                     ->schema([
                         Repeater::make('specifications')
@@ -95,24 +97,35 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Название'),
+                    ->label('Название')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\ImageColumn::make('images')
                     ->label('Изображения'),
                 Tables\Columns\TextColumn::make('subcategory.name')
                     ->label('Подкатегория'),
-                Tables\Columns\TextColumn::make('quantity')
-                    ->label('Количество'),
-                Tables\Columns\ToggleColumn::make('is_closeout')
-                    ->label('Распроажа'),
-                Tables\Columns\ToggleColumn::make('is_pickup')
-                    ->label('Самовывоз'),
-                Tables\Columns\ToggleColumn::make('is_pickup_courier')
-                    ->label('Курьер'),
-                Tables\Columns\ToggleColumn::make('is_pickup_point')
-                    ->label('Из пункта выдачи'),
+
+                Tables\Columns\TextColumn::make('category.name')
+                    ->label('Категория'),
+                Tables\Columns\TextColumn::make('node.name')
+                    ->label('Узел'),
+                // Tables\Columns\ToggleColumn::make('is_closeout')
+                //     ->label('Распроажа'),
+                // Tables\Columns\ToggleColumn::make('is_pickup')
+                //     ->label('Самовывоз'),
+                // Tables\Columns\ToggleColumn::make('is_pickup_courier')
+                //     ->label('Курьер'),
+                // Tables\Columns\ToggleColumn::make('is_pickup_point')
+                //     ->label('Из пункта выдачи'),
             ])
             ->filters([
-                //
+
+                SelectFilter::make('subcategory_id')
+                    ->options(fn() => (new FormatProductOption())->format())
+                    ->label('Подкатегория')->searchable(),
+                SelectFilter::make('node_id')
+                    ->options(fn() => Node::all()->pluck('name', 'id'))
+                    ->label('Узел')->searchable(),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

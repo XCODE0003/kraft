@@ -12,10 +12,16 @@ class FormatProductOption
         return SubCategory::with('node')
             ->get()
             ->mapWithKeys(function ($subcategory) {
-                return [
-
-                    $subcategory->id => $subcategory->name . ' - ' . $subcategory->node?->name
-                ];
+                $node = $subcategory->node;
+                if ($node) {
+                    return [
+                        $subcategory->id => $subcategory->name . ' - ' . $node->name
+                    ];
+                } else {
+                    return [
+                        $subcategory->id => $subcategory->name . ' - ' . $subcategory->category->name
+                    ];
+                }
             });
     }
 }

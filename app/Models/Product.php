@@ -34,4 +34,28 @@ class Product extends Model
     {
         return $this->belongsTo(SubCategory::class);
     }
+
+    public function node()
+    {
+        return $this->hasOneThrough(
+            Node::class,
+            SubCategory::class,
+            'id',
+            'id',
+            'subcategory_id',
+            'node_id'
+        );
+    }
+
+    public function category()
+    {
+        return $this->hasOneThrough(
+            Category::class,
+            SubCategory::class,
+            'id',
+            'id',
+            'subcategory_id',
+            'category_id'
+        );
+    }
 }

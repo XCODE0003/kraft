@@ -250,8 +250,6 @@ footer {
     @apply p-5 rounded-3xl bg-light_gray_2 flex flex-col gap-5;
 }
 
-
-
 .input-label-block {
     @apply flex flex-col gap-3;
 }
@@ -372,5 +370,52 @@ span {
 @media (min-width: 1600px) {
     .main_page_container {
         @apply container mx-auto;
+    }
+}
+
+/* Стили для PrimeVue tooltip */
+.p-tooltip {
+    max-width: 250px;
+}
+
+.p-tooltip .p-tooltip-text {
+    background-color: #1a1a1a;
+    color: #ffffff;
+    padding: 8px 12px;
+    border-radius: 6px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Стрелка tooltip */
+.p-tooltip.p-tooltip-top .p-tooltip-arrow {
+    border-top-color: #1a1a1a;
+}
+
+.p-tooltip.p-tooltip-bottom .p-tooltip-arrow {
+    border-bottom-color: #1a1a1a;
+}
+
+.p-tooltip.p-tooltip-left .p-tooltip-arrow {
+    border-left-color: #1a1a1a;
+}
+
+.p-tooltip.p-tooltip-right .p-tooltip-arrow {
+    border-right-color: #1a1a1a;
+}
+
+/* Анимация появления */
+.p-tooltip .p-tooltip-text {
+    animation: tooltipAnimation 0.2s ease-out;
+}
+
+@keyframes tooltipAnimation {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
