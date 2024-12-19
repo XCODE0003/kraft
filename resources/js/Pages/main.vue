@@ -4,6 +4,7 @@ import { Link } from "@inertiajs/vue3";
 import { useContactModalStore } from "@/Stores/Modals/ContactStore";
 import { useSettingStore } from "@/Stores/SettingStore";
 import { Swiper, SwiperSlide } from "swiper/vue";
+import PopularProduct from "@/Components/Slider/PopularProduct.vue";
 import "swiper/css";
 import { ref } from "vue";
 
@@ -28,6 +29,7 @@ const slideNext = () => {
     }
 };
 const settingStore = useSettingStore();
+const contactStore = useContactModalStore();
 </script>
 
 <template>
@@ -365,6 +367,7 @@ const settingStore = useSettingStore();
             <section class="container mx-auto flex flex-col gap-12">
                 <div class="flex justify-between items-center">
                     <h2 class="title">Популярные товары</h2>
+
                     <Link
                         href="/catalog"
                         class="flex max-sm:hidden items-center text-gray_icon gap-1"
@@ -387,8 +390,12 @@ const settingStore = useSettingStore();
                         </svg>
                     </Link>
                 </div>
-
-                <div class="flex overflow-x-auto md:grid grid-cols-4 gap-4">
+                <div class="lg:hidden">
+                    <PopularProduct :products="products" />
+                </div>
+                <div
+                    class="flex max-lg:hidden overflow-x-auto md:grid grid-cols-4 gap-4"
+                >
                     <Link
                         :href="`/product/${product.id}`"
                         v-for="product in products"
@@ -481,52 +488,64 @@ const settingStore = useSettingStore();
                             <label for="name"
                                 >Имя и Фамилия <span>*</span></label
                             >
-                            <div class="input-wrapper">
+                            <label class="input-wrapper">
                                 <input
                                     type="text"
                                     id="name"
+                                    v-model="contactStore.options.data.name"
                                     placeholder="Имя и фамилия"
                                     autocomplete="off"
                                 />
-                            </div>
+                            </label>
                         </div>
                         <div class="input-label-block">
                             <label for="phone"
                                 >Контактный телефон <span>*</span></label
                             >
-                            <div class="input-wrapper">
+                            <label for="phone" class="input-wrapper">
                                 <input
                                     type="tel"
                                     id="phone"
+                                    v-model="contactStore.options.data.phone"
+                                    v-maska
                                     placeholder="+7 (900) 000-00-00"
                                     autocomplete="off"
                                 />
-                            </div>
+                            </label>
                         </div>
                         <div class="input-label-block">
                             <label for="time">Удобное для вас время</label>
-                            <div class="input-wrapper">
+                            <label for="time" class="input-wrapper">
                                 <input
                                     type="text"
                                     id="time"
+                                    v-model="contactStore.options.data.time"
                                     placeholder="Пятница 12:00"
                                     autocomplete="off"
                                 />
-                            </div>
+                            </label>
                         </div>
                         <div class="input-label-block">
                             <label for="email">E-mail</label>
-                            <div class="input-wrapper">
+                            <label for="email" class="input-wrapper">
                                 <input
                                     type="email"
                                     id="email"
+                                    v-model="contactStore.options.data.email"
                                     placeholder="you@email.com"
                                     autocomplete="off"
                                 />
-                            </div>
+                            </label>
+                            <p
+                                v-if="contactStore.options.errors?.length > 0"
+                                class="text-red text-xs"
+                            >
+                                {{ contactStore.options.errors[0] }}
+                            </p>
                         </div>
                         <button
                             class="btn text-center btn-primary justify-center py-4"
+                            @click="contactStore.validate()"
                         >
                             Заказать звонок
                         </button>

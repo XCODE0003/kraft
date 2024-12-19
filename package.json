@@ -21,10 +21,11 @@
     "dependencies": {
         "@primevue/themes": "^4.2.5",
         "bootstrap": "^5.3.3",
-        "bootstrap-vue": "^2.23.1",
+        "bootstrap-vue": "^1.5.1",
         "pinia": "^2.2.8",
         "primevue": "^3.53.1",
         "swiper": "^11.1.15",
+        "v-mask": "^2.3.0",
         "vue-final-modal": "^4.5.5"
     }
 }

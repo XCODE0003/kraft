@@ -26,6 +26,7 @@ export default {
                 dark: '#2B2B2B',
                 red: '#FD1A1A',
                 border_gray: '#DDDDDD',
+                white_blur: '#929490',
             },
         },
     },

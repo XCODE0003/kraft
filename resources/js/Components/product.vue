@@ -39,7 +39,10 @@ const specs = computed(() => {
 <template>
     <Link :href="`/product/${product.id}`" class="product-item">
         <div class="flex items-center gap-6">
-            <img :src="`/storage/${product.images[0]}`" class="w-20 h-20" />
+            <img
+                :src="`/storage/${product.images[0]}`"
+                class="w-20 h-20 rounded-lg"
+            />
             <div class="flex flex-col gap-4 max-w-[300px]">
                 <div class="flex flex-col gap-2">
                     <span class="text-gray_icon/70 text-sm">

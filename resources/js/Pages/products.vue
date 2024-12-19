@@ -1,3 +1,22 @@
+<style scoped>
+.jumped-fade-enter-active,
+.jumped-fade-leave-active {
+    transition: all 0.05s ease;
+}
+
+.jumped-fade-enter-from,
+.jumped-fade-leave-to {
+    transform: translateY(-5px);
+}
+:deep(.search-input) {
+    padding: 0 1rem !important;
+}
+
+:deep(.vue-select .search-input) {
+    padding: 0 1rem !important;
+}
+</style>
+
 <script setup>
 import Layout from "@/Layouts/Layout.vue";
 import Product from "@/Components/product.vue";
@@ -229,7 +248,10 @@ const getVisiblePages = () => {
                     </transition>
                 </div>
 
-                <div class="flex flex-col gap-6 w-full">
+                <div
+                    v-if="products.length > 0"
+                    class="flex flex-col gap-6 w-full"
+                >
                     <div class="flex container mx-auto flex-col gap-2">
                         <Product
                             v-for="product in products"
@@ -316,19 +338,13 @@ const getVisiblePages = () => {
                         </div>
                     </div>
                 </div>
+                <div
+                    v-else
+                    class="flex flex-col gap-6 w-full justify-center items-center"
+                >
+                    <p class="text-gray_icon/70 text-2xl">Продуктов нет</p>
+                </div>
             </section>
         </main>
     </Layout>
 </template>
-
-<style scoped>
-.jumped-fade-enter-active,
-.jumped-fade-leave-active {
-    transition: all 0.05s ease;
-}
-
-.jumped-fade-enter-from,
-.jumped-fade-leave-to {
-    transform: translateY(-5px);
-}
-</style>

@@ -27,7 +27,6 @@ Route::get('/', function () {
         ->take(8)
         ->sortByDesc('views')
         ->values();
-
     $categories = Category::all();
     $subcategories = SubCategory::whereIn('category_id', $categories->pluck('id'))->get();
     foreach ($categories as $category) {
@@ -181,7 +180,6 @@ Route::get('/category/{category}/{subcategory}/filters', function ($category, $s
         'total' => $products->total(),
         'per_page' => $perPage,
         'current_page' => $page,
-        'specifications' => $specifications
     ]);
 })->name('subcategory');
 
