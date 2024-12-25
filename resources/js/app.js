@@ -1,7 +1,5 @@
 import './bootstrap';
 import '../css/app.css';
-import PrimeVue from 'primevue/config';
-import Tooltip from 'primevue/tooltip';
 
 import { createApp, h } from 'vue';
 import { createInertiaApp } from '@inertiajs/vue3';
@@ -28,8 +26,6 @@ createInertiaApp({
             .use(vfm)
             .use(pinia)
             .use(ZiggyVue)
-            .use(PrimeVue)
-            .directive('tooltip', Tooltip);
 
         return app.mount(el);
     },

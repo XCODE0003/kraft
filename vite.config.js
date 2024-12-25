@@ -15,6 +15,11 @@ export default defineConfig({
                     base: null,
                     includeAbsolute: false,
                 },
+                compilerOptions: {
+                    compatConfig: {
+                        MODE: 2
+                    }
+                }
             },
         }),
     ],

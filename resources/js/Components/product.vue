@@ -57,16 +57,8 @@ const specs = computed(() => {
                             class="flex items-center gap-1"
                         >
                             <span
-                                v-tooltip.top="{
-                                    value: productStore.getSpecification(
-                                        key,
-                                        props.specifications_all
-                                    ),
-                                    class: 'custom-tooltip',
-                                    showDelay: 150,
-                                    hideDelay: 100,
-                                }"
-                                class="text-gray_icon/70 text-sm text-nowrap"
+                                :title="productStore.getSpecification(key, props.specifications_all)"
+                                class="tooltip-trigger text-gray_icon/70 text-sm text-nowrap"
                             >
                                 {{ spec.value }}
                             </span>
@@ -97,3 +89,53 @@ const specs = computed(() => {
         <button class="btn btn-white">Связаться</button>
     </Link>
 </template>
+
+<style scoped>
+.tooltip-trigger {
+    position: relative;
+}
+
+.tooltip-trigger::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 120%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #333;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 14px;
+    white-space: nowrap;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.tooltip-trigger:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.tooltip-trigger::before {
+    content: '';
+    position: absolute;
+    bottom: 110%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.2s ease;
+}
+
+.tooltip-trigger:hover::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+</style>
