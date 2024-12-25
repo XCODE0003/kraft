@@ -1,117 +1,224 @@
 <script setup>
-import Layout from '@/Layouts/Layout.vue';
-import { Link } from '@inertiajs/vue3';
-import { defineProps } from 'vue'
-
+import Layout from "@/Layouts/Layout.vue";
+import { Link } from "@inertiajs/vue3";
+import { defineProps } from "vue";
+import { Head } from "@inertiajs/vue3";
 const props = defineProps({
     categories: Object,
 });
 </script>
 
 <template>
+    <Head>
+        <title>Контакты - КрафтСнаб</title>
+        <meta name="description" content="Контакты КрафтСнаб" />
+        <meta property="og:description" content="Контакты КрафтСнаб" />
+    </Head>
     <Layout>
         <main class="flex flex-col py-14 gap-12">
             <section class="flex flex-col items-center justify-center gap-6">
                 <div class="flex items-center gap-3">
                     <Link href="/" class="text-gray_icon/70">Главная</Link>
-                    <svg width="6" height="6" viewBox="0 0 6 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <svg
+                        width="6"
+                        height="6"
+                        viewBox="0 0 6 6"
+                        fill="none"
+                        xmlns="http://www.w3.org/2000/svg"
+                    >
                         <circle cx="3" cy="3" r="3" fill="#E3E3E3" />
                     </svg>
 
                     <span>Каталог</span>
                 </div>
-                <h1 class=" text-[56px] leading-none font-bold">Контакты</h1>
+                <h1 class="text-[56px] leading-none font-bold">Контакты</h1>
             </section>
-            <section class="grid container mx-auto grid-cols-1 lg:grid-cols-2 gap-5">
+            <section
+                class="grid container mx-auto grid-cols-1 lg:grid-cols-2 gap-5"
+            >
                 <div class="flex flex-col gap-6 md:order-1 order-2">
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm leading-none font-semibold text-gray_icon/70">Название организации</p>
-                        <p class="text-semibold font-bold text-xl">Общество с ограниченной ответственностью «КрафтСнаб»
+                        <p
+                            class="text-sm leading-none font-semibold text-gray_icon/70"
+                        >
+                            Название организации
+                        </p>
+                        <p class="text-semibold font-bold text-xl">
+                            Общество с ограниченной ответственностью «КрафтСнаб»
                         </p>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm leading-none font-semibold text-gray_icon/70">Режим работы</p>
-                        <p class="text-semibold font-bold">с 9:00 до 17:00, сб - вс выходной.</p>
+                        <p
+                            class="text-sm leading-none font-semibold text-gray_icon/70"
+                        >
+                            Режим работы
+                        </p>
+                        <p class="text-semibold font-bold">
+                            с 9:00 до 17:00, сб - вс выходной.
+                        </p>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm leading-none font-semibold text-gray_icon/70">Юридический/Фактический адрес
+                        <p
+                            class="text-sm leading-none font-semibold text-gray_icon/70"
+                        >
+                            Юридический/Фактический адрес
                         </p>
-                        <p class="text-semibold font-bold">350075, Краснодарский край, г. Краснодар, ул. им. Стасова, д.
-                            182/1, этаж 3, помещ. 3.</p>
+                        <p class="text-semibold font-bold">
+                            350075, Краснодарский край, г. Краснодар, ул. им.
+                            Стасова, д. 182/1, этаж 3, помещ. 3.
+                        </p>
                     </div>
 
                     <div class="flex items-center gap-6">
                         <div class="flex flex-col gap-3">
-                            <p class="text-sm leading-none font-semibold text-gray_icon/70">ИНН</p>
-                            <p class="text-xl leading-none font-semibold ">2312324484</p>
+                            <p
+                                class="text-sm leading-none font-semibold text-gray_icon/70"
+                            >
+                                ИНН
+                            </p>
+                            <p class="text-xl leading-none font-semibold">
+                                2312324484
+                            </p>
                         </div>
                         <div class="flex flex-col gap-3">
-                            <p class="text-sm leading-none font-semibold text-gray_icon/70">КПП</p>
-                            <p class="text-xl leading-none font-semibold ">231201001</p>
+                            <p
+                                class="text-sm leading-none font-semibold text-gray_icon/70"
+                            >
+                                КПП
+                            </p>
+                            <p class="text-xl leading-none font-semibold">
+                                231201001
+                            </p>
                         </div>
                         <div class="flex flex-col gap-3">
-                            <p class="text-sm leading-none font-semibold text-gray_icon/70">ОГРН</p>
-                            <p class="text-xl leading-none font-semibold ">1242300003967</p>
+                            <p
+                                class="text-sm leading-none font-semibold text-gray_icon/70"
+                            >
+                                ОГРН
+                            </p>
+                            <p class="text-xl leading-none font-semibold">
+                                1242300003967
+                            </p>
                         </div>
-
                     </div>
 
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm leading-none font-semibold text-gray_icon/70">Почтовый адрес</p>
-                        <p class="text-semibold font-bold">350075, Краснодарский край, г. Краснодар, ул. им. Стасова, д.
-                            182/1, этаж 3, офис 301.</p>
+                        <p
+                            class="text-sm leading-none font-semibold text-gray_icon/70"
+                        >
+                            Почтовый адрес
+                        </p>
+                        <p class="text-semibold font-bold">
+                            350075, Краснодарский край, г. Краснодар, ул. им.
+                            Стасова, д. 182/1, этаж 3, офис 301.
+                        </p>
                     </div>
                     <div class="flex flex-col gap-2">
-                        <p class="text-sm leading-none font-semibold text-gray_icon/70">Связаться с нами</p>
+                        <p
+                            class="text-sm leading-none font-semibold text-gray_icon/70"
+                        >
+                            Связаться с нами
+                        </p>
                         <div class="flex items-center gap-3 flex-wrap">
-                            <a href="" class="btn btn-primary">Заказать звонок</a>
-                            <a href="" class="btn btn-secondary tracking-normal">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                            <a href="" class="btn btn-primary"
+                                >Заказать звонок</a
+                            >
+                            <a
+                                href=""
+                                class="btn btn-secondary tracking-normal"
+                            >
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
                                         d="M8.71244 3.87223C8.78294 3.51086 9.13305 3.27506 9.49443 3.34557C10.2758 3.49802 10.9939 3.88017 11.5569 4.44312C12.1198 5.00606 12.502 5.72418 12.6544 6.50557C12.7249 6.86694 12.4891 7.21705 12.1278 7.28756C11.7664 7.35806 11.4163 7.12227 11.3458 6.76089C11.2441 6.23997 10.9894 5.76122 10.6141 5.38592C10.2388 5.01063 9.76003 4.75586 9.2391 4.65423C8.87773 4.58372 8.64193 4.23361 8.71244 3.87223Z"
-                                        fill="#D6D6D6" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        fill="#D6D6D6"
+                                    />
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
                                         d="M8.70418 1.25962C8.74483 0.893682 9.07444 0.629986 9.44038 0.670639C10.9435 0.837629 12.3453 1.51077 13.4154 2.57953C14.4855 3.6483 15.1604 5.04916 15.3293 6.55212C15.3704 6.91801 15.1071 7.24795 14.7412 7.28906C14.3753 7.33017 14.0454 7.06689 14.0043 6.701C13.8692 5.49864 13.3292 4.37795 12.4732 3.52294C11.6171 2.66792 10.4957 2.12941 9.29316 1.99582C8.92722 1.95517 8.66352 1.62556 8.70418 1.25962Z"
-                                        fill="#D6D6D6" />
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        fill="#D6D6D6"
+                                    />
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
                                         d="M4.22536 11.8347C2.60275 10.2121 1.42287 8.19142 0.795817 5.98526C0.697478 5.63925 0.621221 5.37094 0.620126 5.00301C0.618874 4.58249 0.755879 4.05567 0.961832 3.68904C1.31602 3.05853 2.07653 2.25049 2.73341 1.91824C3.30097 1.63117 3.97124 1.63117 4.5388 1.91824C5.0959 2.20002 5.73495 2.85229 6.07423 3.37412C6.50522 4.03701 6.50522 4.89159 6.07423 5.55449C5.95873 5.73212 5.79411 5.89646 5.60301 6.08724C5.5435 6.14665 5.478 6.18958 5.5215 6.28017C5.95338 7.17969 6.54237 8.02342 7.28949 8.77054C8.03661 9.51766 8.88034 10.1067 9.77986 10.5385C9.87299 10.5832 9.91116 10.5188 9.97279 10.457C10.1636 10.2659 10.3279 10.1013 10.5055 9.9858C11.1684 9.55481 12.023 9.55481 12.6859 9.9858C13.2077 10.3251 13.86 10.9641 14.1418 11.5212C14.4289 12.0888 14.4289 12.7591 14.1418 13.3266C13.812 13.9786 13.0106 14.7389 12.371 15.0982C12.0044 15.3041 11.4775 15.4412 11.057 15.4399C10.6891 15.4388 10.4208 15.3625 10.0748 15.2642C7.86862 14.6372 5.84795 13.4573 4.22536 11.8347Z"
-                                        fill="#D6D6D6" />
+                                        fill="#D6D6D6"
+                                    />
                                 </svg>
-                                +7(861)200-00-00</a>
+                                +7(861)200-00-00</a
+                            >
                             <a href="" class="btn btn-green">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 16 16"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
                                         d="M8.00036 16C6.49203 15.9957 5.0157 15.5629 3.74418 14.7497L0 16L1.24807 12.248C0.308295 10.7445 -0.106676 8.97051 0.0682648 7.2062C0.244273 5.44081 1.00164 3.78336 2.21983 2.49673C3.43802 1.20903 5.04876 0.363745 6.79923 0.0933803C8.54971 -0.176984 10.3397 0.143603 11.8885 1.00492C13.4363 1.86517 14.6556 3.21699 15.3532 4.84666C16.0519 6.4774 16.1885 8.29407 15.7437 10.0114C15.2988 11.7287 14.2961 13.2483 12.8945 14.3329C11.4928 15.4165 9.77111 16.0032 8.00036 16ZM9.73911 9.19919C10.2714 9.37338 10.8122 9.51764 11.3605 9.63198C11.4181 9.64053 11.4736 9.66086 11.5227 9.69078C11.5728 9.72177 11.6165 9.7613 11.6496 9.80939C11.6837 9.85641 11.7072 9.90986 11.72 9.96756C11.7328 10.0242 11.7339 10.083 11.7232 10.1407V10.4431C11.7285 10.5531 11.7083 10.6622 11.6635 10.7626C11.6197 10.8631 11.5515 10.9528 11.4672 11.0223C11.2048 11.2895 10.8933 11.5042 10.5498 11.6549C10.0431 11.7148 9.53002 11.671 9.04253 11.5235C8.55398 11.376 8.10171 11.1302 7.71236 10.8C7.21101 10.4634 6.74272 10.0787 6.31497 9.65122C5.88935 9.22056 5.50318 8.75143 5.1629 8.25024C4.83648 7.86019 4.59222 7.4071 4.44714 6.91874C4.30314 6.43144 4.25938 5.9185 4.32018 5.41304C4.47059 5.07107 4.68396 4.76117 4.94957 4.49828C5.01678 4.41172 5.1053 4.34332 5.20558 4.29951C5.30585 4.2557 5.41677 4.23647 5.52558 4.24609H5.83493C5.9512 4.23006 6.06963 4.26104 6.1635 4.33157C6.25843 4.40317 6.32029 4.50897 6.33629 4.62545C6.4963 5.25808 6.61364 5.71546 6.77365 6.2284C6.83765 6.44213 6.76297 6.49342 6.59229 6.62166C6.48562 6.70394 6.40031 6.76379 6.31497 6.82791C6.2659 6.84928 6.22109 6.88133 6.18482 6.92087C6.14855 6.96041 6.1208 7.00743 6.10373 7.05872C6.08666 7.11002 6.08026 7.16452 6.0856 7.21795C6.09093 7.27138 6.10694 7.32375 6.13361 7.37077C6.40562 7.89547 6.75444 8.37742 7.16833 8.8006C7.58968 9.21523 8.07183 9.56362 8.59772 9.83398C8.64466 9.85963 8.69693 9.8767 8.75027 9.88098C8.8036 9.88632 8.85799 9.87991 8.90919 9.86281C8.9604 9.84571 9.00734 9.81902 9.04787 9.78268C9.08734 9.74635 9.11936 9.70253 9.14176 9.65338C9.20576 9.56682 9.2591 9.48665 9.34443 9.37445C9.3583 9.33597 9.37855 9.30073 9.40629 9.2708C9.43295 9.24088 9.46603 9.21629 9.50336 9.19919C9.53963 9.18209 9.58018 9.17247 9.62072 9.1714C9.66125 9.17033 9.70178 9.17676 9.73911 9.19172V9.19919Z"
-                                        fill="white" />
+                                        fill="white"
+                                    />
                                 </svg>
 
-                                WhatsApp</a>
+                                WhatsApp</a
+                            >
                             <a href="" class="btn btn-blue">
-                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                <svg
+                                    width="16"
+                                    height="14"
+                                    viewBox="0 0 16 14"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
                                         d="M13.697 12.8824C13.6765 13.1132 13.5874 13.3324 13.4425 13.5121C13.2988 13.6907 13.1048 13.8218 12.8857 13.8879C12.6667 13.954 12.4339 13.9517 12.2171 13.8821C11.9992 13.8125 11.8075 13.678 11.666 13.4959C10.4223 12.4903 8.48257 11.0429 8.48257 11.0429C8.48257 11.0429 7.07911 13.5562 6.82809 13.8137C6.7448 13.8844 6.64897 13.9378 6.54513 13.9679C6.44016 13.9992 6.33176 14.0074 6.2245 13.9934C6.11611 13.9784 6.01343 13.9413 5.921 13.8833C5.82858 13.8264 5.74869 13.7499 5.68708 13.6594C5.67453 13.62 5.65858 13.5806 5.64146 13.5434L6.42873 9.53981L12.0425 3.93455L4.38634 8.37538C4.38634 8.37538 0.929062 7.32463 0.415607 7.11935C0.283249 7.04628 0.173711 6.93608 0.100686 6.80154C0.0276613 6.66701 -0.00771649 6.51508 0.00141161 6.36198C0.00939869 6.20889 0.0607685 6.06159 0.147485 5.93634C0.235343 5.81108 0.356282 5.71365 0.495486 5.65566C1.22573 5.27757 14.1078 0.276547 14.5413 0.14781C14.9749 0.0190732 16.1159 -0.316109 15.9904 0.81237C15.8649 1.94085 13.8225 12.263 13.697 12.8824Z"
-                                        fill="white" />
+                                        fill="white"
+                                    />
                                 </svg>
 
-                                Telegram</a>
+                                Telegram</a
+                            >
                             <a href="" class="btn btn-blue">
-                                <svg width="16" height="14" viewBox="0 0 16 14" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                <svg
+                                    width="16"
+                                    height="14"
+                                    viewBox="0 0 16 14"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                >
+                                    <path
+                                        fill-rule="evenodd"
+                                        clip-rule="evenodd"
                                         d="M13.697 12.8824C13.6765 13.1132 13.5874 13.3324 13.4425 13.5121C13.2988 13.6907 13.1048 13.8218 12.8857 13.8879C12.6667 13.954 12.4339 13.9517 12.2171 13.8821C11.9992 13.8125 11.8075 13.678 11.666 13.4959C10.4223 12.4903 8.48257 11.0429 8.48257 11.0429C8.48257 11.0429 7.07911 13.5562 6.82809 13.8137C6.7448 13.8844 6.64897 13.9378 6.54513 13.9679C6.44016 13.9992 6.33176 14.0074 6.2245 13.9934C6.11611 13.9784 6.01343 13.9413 5.921 13.8833C5.82858 13.8264 5.74869 13.7499 5.68708 13.6594C5.67453 13.62 5.65858 13.5806 5.64146 13.5434L6.42873 9.53981L12.0425 3.93455L4.38634 8.37538C4.38634 8.37538 0.929062 7.32463 0.415607 7.11935C0.283249 7.04628 0.173711 6.93608 0.100686 6.80154C0.0276613 6.66701 -0.00771649 6.51508 0.00141161 6.36198C0.00939869 6.20889 0.0607685 6.06159 0.147485 5.93634C0.235343 5.81108 0.356282 5.71365 0.495486 5.65566C1.22573 5.27757 14.1078 0.276547 14.5413 0.14781C14.9749 0.0190732 16.1159 -0.316109 15.9904 0.81237C15.8649 1.94085 13.8225 12.263 13.697 12.8824Z"
-                                        fill="white" />
+                                        fill="white"
+                                    />
                                 </svg>
 
-                                ВКонтакте</a>
+                                ВКонтакте</a
+                            >
                         </div>
                     </div>
                 </div>
-                <iframe class="md:order-2 order-1"
+                <iframe
+                    class="md:order-2 order-1"
                     src="https://yandex.ru/map-widget/v1/?um=constructor%3Ab6968cc1cc65d7df7317f1394e27a03d3af9a3a375e5f83edd6f7e070ba356bf&amp;source=constructor"
-                    width="100%" style="height: 100%; min-height: 400px;" frameborder="0">
+                    width="100%"
+                    style="height: 100%; min-height: 400px"
+                    frameborder="0"
+                >
                 </iframe>
             </section>
         </main>

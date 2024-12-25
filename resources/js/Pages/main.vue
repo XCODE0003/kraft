@@ -5,6 +5,7 @@ import { useContactModalStore } from "@/Stores/Modals/ContactStore";
 import { useSettingStore } from "@/Stores/SettingStore";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import PopularProduct from "@/Components/Slider/PopularProduct.vue";
+import { Head } from "@inertiajs/vue3";
 import "swiper/css";
 import { ref } from "vue";
 
@@ -33,6 +34,17 @@ const contactStore = useContactModalStore();
 </script>
 
 <template>
+    <Head>
+        <title>КрафтСнаб - Поставки металлопроката по всей России.</title>
+        <meta
+            name="description"
+            content="Мы предлагаем широкий ассортимент металлопроката, соответствующего все требованиям ГОСТ, применяемого в строительных, промышленных и производственных целях."
+        />
+        <meta
+            property="og:description"
+            content="Мы предлагаем широкий ассортимент металлопроката, соответствующего все требованиям ГОСТ, применяемого в строительных, промышленных и производственных целях."
+        />
+    </Head>
     <Layout>
         <main class="flex flex-col gap-24">
             <section class="relative main_page_container">

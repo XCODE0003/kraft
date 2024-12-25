@@ -134,11 +134,11 @@ Route::get('/category/{category}/{subcategory}', function ($category, $subcatego
     $subcategory = SubCategory::where('id', $subcategory)->first();
 
     $products = Product::where('subcategory_id', $subcategory->id)->paginate(10);
-
+    $all_products = Product::where('subcategory_id', $subcategory->id)->get();
     $filters = [];
     $groupedFilters = [];
     $specifications_all = Specifications::all();
-    foreach ($products as $product) {
+    foreach ($all_products as $product) {
         foreach ($product->specifications as $spec) {
             $key = $spec['key'];
             $specification = Specifications::where('key', $key)->first();

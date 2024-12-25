@@ -23,6 +23,7 @@ import Product from "@/Components/product.vue";
 import { Link } from "@inertiajs/vue3";
 import VueSelect from "vue3-select-component";
 import { ref, watch } from "vue";
+import { Head } from "@inertiajs/vue3";
 const props = defineProps({
     category: {
         type: Object,
@@ -133,6 +134,11 @@ const getVisiblePages = () => {
 </script>
 
 <template>
+    <Head>
+        <title>{{ props.subcategory.name }} - КрафтСнаб</title>
+        <meta name="description" content="Каталог продуктов КрафтСнаб" />
+        <meta property="og:description" content="Каталог продуктов КрафтСнаб" />
+    </Head>
     <Layout>
         <main class="flex flex-col py-14 gap-12">
             <section class="flex flex-col items-center justify-center gap-6">

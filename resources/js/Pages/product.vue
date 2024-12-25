@@ -4,7 +4,7 @@ import { Link } from "@inertiajs/vue3";
 import { useContactModalStore } from "@/Stores/Modals/ContactStore";
 import ImageSlider from "@/Components/Slider/imageSlider.vue";
 import { useProductStore } from "@/Stores/ProductStore";
-
+import { Head } from "@inertiajs/vue3";
 const props = defineProps({
     product: Object,
     category: Object,
@@ -18,6 +18,11 @@ productStore.addToHistoryViews(props.product);
 </script>
 
 <template>
+    <Head>
+        <title>{{ props.product.name }} - КрафтСнаб</title>
+        <meta name="description" :content="props.product.description" />
+        <meta property="og:description" :content="props.product.description" />
+    </Head>
     <Layout>
         <main class="flex flex-col py-14 gap-12">
             <section

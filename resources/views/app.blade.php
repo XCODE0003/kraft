@@ -8,7 +8,7 @@
     <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- <link rel="stylesheet" href="/assets/fonts/stylesheet.css"> -->
-
+    <link rel="icon" href="/favicon.png" />
     @routes
     @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
     @inertiaHead

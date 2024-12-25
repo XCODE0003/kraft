@@ -29,7 +29,7 @@ createInertiaApp({
             .use(pinia)
             .use(ZiggyVue)
             .use(PrimeVue)
-            .directive('tooltip', Tooltip);  // Затем регистрируем директиву
+            .directive('tooltip', Tooltip);
 
         return app.mount(el);
     },
