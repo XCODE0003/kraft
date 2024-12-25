@@ -117,7 +117,7 @@ productStore.addToHistoryViews(props.product);
                     >
                         <div
                             v-for="spec in props.product?.specifications"
-                            class="catalog-item-element"
+                            class="catalog-item-element no_hover hover:text-black hover:fill-black"
                         >
                             <span class="text-base text-gray-1 font-semibold">
                                 {{ spec.name }}

@@ -333,9 +333,12 @@ label span {
     position: absolute;
     color: #c2c1be;
 }
-
 .catalog-item-element:hover span:first-child::after {
-    color: #7645ef;
+    color: black;
+    cursor: default;
+}
+.catalog-item-element.no_hover span:first-child::after {
+    color: #c2c1be;
 }
 
 .catalog-item-element-title p {
