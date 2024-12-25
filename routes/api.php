@@ -31,10 +31,10 @@
             'text' => $message,
         ]);
 
-        Mail::raw($message, function ($message) {
-            $message->from(env('MAIL_USERNAME'))
-                ->to(env('EMAIL_TO_ADDRESS'))
-                ->subject('Новая заявка на обратную связь');
-        });
+        // Mail::raw($message, function ($message) {
+        //     $message->from(env('MAIL_USERNAME'))
+        //         ->to(env('EMAIL_TO_ADDRESS'))
+        //         ->subject('Новая заявка на обратную связь');
+        // });
         return response()->json(['message' => 'Message sent']);
     });
