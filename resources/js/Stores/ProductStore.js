@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 
 export const useProductStore = defineStore('product', () => {
     const options = ref({
@@ -9,16 +9,31 @@ export const useProductStore = defineStore('product', () => {
         loading: false,
         lastSearch: [],
         timeout: null,
-        history_views: localStorage.getItem('history_views') ? JSON.parse(localStorage.getItem('history_views')) : []
+        history_views: []
     })
 
+    // Инициализация store с проверкой окружения
+    function initClientSide() {
+        if (typeof window !== 'undefined') {
+            const savedHistory = localStorage.getItem('history_views')
+            if (savedHistory) {
+                options.value.history_views = JSON.parse(savedHistory)
+            }
+        }
+    }
+
     async function init() {
+        initClientSide() // Инициализируем клиентские данные, если возможно
         await getPopularProducts()
     }
 
     async function getPopularProducts() {
-        const { data } = await axios.get('/popular-products')
-        options.value.popularProducts = data
+        try {
+            const { data } = await axios.get('/popular-products')
+            options.value.popularProducts = data
+        } catch (error) {
+            console.error('Error fetching popular products:', error)
+        }
     }
 
     function addToHistoryViews(product) {
@@ -29,7 +44,15 @@ export const useProductStore = defineStore('product', () => {
             options.value.history_views.shift()
         }
         options.value.history_views.push(product)
-        localStorage.setItem('history_views', JSON.stringify(options.value.history_views))
+
+        // Сохраняем в localStorage только на клиенте
+        if (typeof window !== 'undefined') {
+            try {
+                localStorage.setItem('history_views', JSON.stringify(options.value.history_views))
+            } catch (error) {
+                console.error('Error saving to localStorage:', error)
+            }
+        }
     }
 
     function getSpecification(key, specifications) {
@@ -37,6 +60,10 @@ export const useProductStore = defineStore('product', () => {
         return result?.name
     }
 
-
-    return { options, init, getSpecification, addToHistoryViews }
+    return {
+        options,
+        init,
+        getSpecification,
+        addToHistoryViews
+    }
 }) 

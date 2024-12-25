@@ -14,6 +14,9 @@ const props = defineProps({
     categories: Object,
 });
 
+const settingStore = useSettingStore();
+const contactStore = useContactModalStore();
+
 const swiperInstance = ref(null);
 
 const onSwiper = (swiper) => {
@@ -29,8 +32,6 @@ const slideNext = () => {
         swiperInstance.value.slideNext();
     }
 };
-const settingStore = useSettingStore();
-const contactStore = useContactModalStore();
 </script>
 
 <template>

@@ -22,7 +22,7 @@ import Layout from "@/Layouts/Layout.vue";
 import Product from "@/Components/product.vue";
 import { Link } from "@inertiajs/vue3";
 import VueSelect from "vue3-select-component";
-import { ref, watch } from "vue";
+import { ref, watch, onMounted } from "vue";
 import { Head } from "@inertiajs/vue3";
 const props = defineProps({
     category: {
@@ -86,10 +86,15 @@ const getProducts = async (page = 1) => {
         );
         currentPage.value = page;
 
-        document.getElementById("catalog-title").scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        });
+        if (typeof window !== "undefined") {
+            const element = document.getElementById("catalog-title");
+            if (element) {
+                element.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start",
+                });
+            }
+        }
     } catch (error) {
         console.error("Ошибка при загрузке продуктов:", error);
     }
@@ -131,6 +136,10 @@ const getVisiblePages = () => {
 
     return rangeWithDots;
 };
+
+onMounted(() => {
+    // Здесь можно добавить код, который должен выполняться только на клиенте
+});
 </script>
 
 <template>
