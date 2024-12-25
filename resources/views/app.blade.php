@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title inertia>{{ config('app.name', 'Laravel') }}</title>
+    <title inertia>КрафтСнаб - Поставки металлопроката по всей России.</title>
     <meta name="description"
         content="Мы предлагаем широкий ассортимент металлопроката, соответствующего все требованиям ГОСТ, применяемого в строительных, промышленных и производственных целях." />
     <meta property="og:description"
