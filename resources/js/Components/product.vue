@@ -92,7 +92,7 @@ const specs = computed(() => {
             </div>
         </div>
         <button
-            @click.prevent="contactModalStore.openModal()"
+            @click.prevent.stop="contactModalStore.openModal()"
             class="btn btn-white"
         >
             Связаться
