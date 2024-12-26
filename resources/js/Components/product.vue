@@ -2,7 +2,7 @@
 import { computed, toRefs } from "vue";
 import { Link } from "@inertiajs/vue3";
 import { useProductStore } from "@/Stores/ProductStore";
-
+import { useContactModalStore } from "@/Stores/Modals/ContactStore";
 const props = defineProps({
     product: {
         type: Object,
@@ -23,7 +23,7 @@ const productStore = useProductStore();
 const specKeys = computed(() => [
     ...new Set(specifications.value.map((spec) => spec.key)),
 ]);
-
+const contactModalStore = useContactModalStore();
 const specs = computed(() => {
     const result = {};
     specifications.value.forEach((spec) => {
@@ -57,7 +57,12 @@ const specs = computed(() => {
                             class="flex items-center gap-1"
                         >
                             <span
-                                :title="productStore.getSpecification(key, props.specifications_all)"
+                                :title="
+                                    productStore.getSpecification(
+                                        key,
+                                        props.specifications_all
+                                    )
+                                "
                                 class="tooltip-trigger text-gray_icon/70 text-sm text-nowrap"
                             >
                                 {{ spec.value }}
@@ -86,7 +91,12 @@ const specs = computed(() => {
                 </div>
             </div>
         </div>
-        <button class="btn btn-white">Связаться</button>
+        <button
+            @click.prevent="contactModalStore.openModal()"
+            class="btn btn-white"
+        >
+            Связаться
+        </button>
     </Link>
 </template>
 
@@ -120,7 +130,7 @@ const specs = computed(() => {
 }
 
 .tooltip-trigger::before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 110%;
     left: 50%;
